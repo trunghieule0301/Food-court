@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_4"
+    tools:context=".Authenticate">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="370dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        app:srcCompat="@drawable/detail" />
+
+    <Button
+        android:id="@+id/btnPay"
+        android:background="@drawable/payicon_4"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="460dp"
+        android:layout_marginStart="135dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btnHome4"
+        android:background="@drawable/home_icon_4"
+        android:layout_width="40dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="560dp"
+        android:layout_marginStart="40dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btnStall4"
+        android:background="@drawable/stall_icon_4"
+        android:layout_width="40dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="560dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btnNotification4"
+        android:background="@drawable/noti_icon_4"
+        android:layout_width="40dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="560dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/btnMe4"
+        android:background="@drawable/me_icon_4"
+        android:layout_width="40dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginTop="560dp"
+        android:text="" />
+
+</RelativeLayout>
