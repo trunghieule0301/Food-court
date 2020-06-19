@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background01"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="595dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/icon02" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="245dp"
+        android:layout_marginTop="595dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/icon04" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="595dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/icon05" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="595dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/icon03" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/food" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="300dp"
+        app:srcCompat="@drawable/promotion03" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="125dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="490dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/order_button_02"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="300dp"
+        app:srcCompat="@drawable/bk" />
+
+</RelativeLayout>
