@@ -192,5 +192,13 @@ public class Food extends AppCompatActivity {
             }
         });
 
+        button19.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Food.this, Authenticate.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

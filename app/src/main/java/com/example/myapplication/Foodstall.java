@@ -51,10 +51,12 @@ public class Foodstall extends AppCompatActivity {
 
             }
         });
+
         btnLogo4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(Foodstall.this, Food.class);
+                startActivity(intent);
             }
         });
     }
