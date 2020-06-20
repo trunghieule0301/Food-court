@@ -34,7 +34,12 @@ public class Food extends AppCompatActivity {
     int tong3 = 0;
     int tong4 = 0;
     int tong5 = 0;
-
+    int tong_hang[] = new int[6];
+    public static final String KEY1 = "Tong mon da dat";
+    public static final String KEY2 = "";
+    public static final String KEY3 = "";
+    public static final String KEY4 = "";
+    public static final String KEY5 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,7 +188,12 @@ public class Food extends AppCompatActivity {
                 txtKetQua5.setText(String.valueOf(tong5));
             }
         });
-
+        tong_hang[0]=tong;
+        tong_hang[1]=tong1;
+        tong_hang[2]=tong2;
+        tong_hang[3]=tong3;
+        tong_hang[4]=tong4;
+        tong_hang[5]=tong5;
         button18.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -196,9 +206,19 @@ public class Food extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Food.this, Authenticate.class);
+                intent.putExtra("Key1", tong1);
+                intent.putExtra("Key2", tong2);
+                intent.putExtra("Key3", tong3);
+                intent.putExtra("Key4", tong4);
+                intent.putExtra("Key5", tong5);
                 startActivity(intent);
             }
         });
 
+    }
+    public void byExtra(int[] tong){
+        Intent intent = new Intent(this, Authenticate.class);
+        intent.putExtra(KEY1,tong);
+        startActivity(intent);
     }
 }

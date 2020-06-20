@@ -154,41 +154,45 @@
     <TextView
         android:textSize="21dp"
         android:id="@+id/textView"
+        android:fontFamily="@font/icel"
         android:textStyle="bold"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="345dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:text="0" />
 
     <TextView
         android:id="@+id/textView1"
         android:textSize="40dp"
+        android:fontFamily="@font/icel"
         android:textStyle="bold"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_marginStart="330dp"
-        android:layout_marginTop="455dp"
+        android:layout_marginTop="450dp"
         android:text="0" />
 
     <TextView
         android:id="@+id/textView2"
+        android:fontFamily="@font/icel"
         android:textSize="40dp"
         android:textStyle="bold"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_marginStart="330dp"
-        android:layout_marginTop="387dp"
+        android:layout_marginTop="382dp"
         android:text="0" />
 
     <TextView
         android:id="@+id/textView3"
         android:textSize="40dp"
         android:textStyle="bold"
+        android:fontFamily="@font/icel"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_marginStart="330dp"
-        android:layout_marginTop="302dp"
+        android:layout_marginTop="295dp"
         android:text="0" />
 
     <TextView
@@ -197,18 +201,20 @@
         android:textStyle="bold"
         android:layout_width="40dp"
         android:layout_height="50dp"
+        android:fontFamily="@font/icel"
         android:layout_marginStart="330dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="225dp"
         android:text="0" />
 
     <TextView
         android:id="@+id/textView5"
+        android:fontFamily="@font/icel"
         android:textSize="40dp"
         android:textStyle="bold"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_marginStart="330dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="135dp"
         android:text="0" />
 
     <Button
