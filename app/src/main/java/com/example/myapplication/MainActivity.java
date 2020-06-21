@@ -9,12 +9,13 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button btnStart;
-    Button btnMe1;
+    Button btnHome;
+    Button btnStall;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnMe1 = (Button) findViewById(R.id.button5);
+        btnStall = (Button) findViewById(R.id.button7);
         btnStart = (Button) findViewById(R.id.button8);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -23,11 +24,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnMe1.setOnClickListener(new View.OnClickListener() {
+
+        btnStall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, Foodstall.class);
+                startActivity(intent);
             }
         });
+
     }
 }

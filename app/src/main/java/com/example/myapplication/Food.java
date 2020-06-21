@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Food extends AppCompatActivity {
+    Button button;
     Button button14;
     Button button15;
     Button button12;
@@ -45,6 +46,7 @@ public class Food extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
+        button = (Button) findViewById(R.id.button);
         button14 = (Button) findViewById((R.id.button14));
         button15 = (Button) findViewById((R.id.button15));
         button12 = (Button) findViewById((R.id.button12));
@@ -63,6 +65,14 @@ public class Food extends AppCompatActivity {
         txtKetQua3 = (TextView) findViewById((R.id.textView3));
         txtKetQua4 = (TextView) findViewById((R.id.textView2));
         txtKetQua5 = (TextView) findViewById((R.id.textView1));
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Food.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         button14.setOnClickListener(new View.OnClickListener() {
             @Override

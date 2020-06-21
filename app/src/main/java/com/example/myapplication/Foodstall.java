@@ -30,7 +30,8 @@ public class Foodstall extends AppCompatActivity {
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(Foodstall.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         btnTest2.setOnClickListener(new View.OnClickListener() {

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Authenticate extends AppCompatActivity {
+    Button home;
     TextView txtQty1;
     TextView txtQty2;
     TextView txtQty3;
@@ -62,10 +63,19 @@ public class Authenticate extends AppCompatActivity {
         Phai_tra = tong1 + tong2 + tong3 + tong4 + tong5;
         txtTotalPrice.setText(String.valueOf(Phai_tra));
         btnBack = (Button) findViewById(R.id.btnBack);
+        home = (Button) findViewById(R.id.btnHome4);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent1 = new Intent(Authenticate.this,Food.class);
+                startActivity(intent1);
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(Authenticate.this, MainActivity.class);
                 startActivity(intent1);
             }
         });
