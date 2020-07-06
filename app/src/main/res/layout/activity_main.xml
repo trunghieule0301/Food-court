@@ -1,86 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/container"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottom_navigation"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background01"
-    tools:context=".MainActivity">
+    android:layout_marginStart="0dp"
+    android:layout_marginEnd="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    android:background="#00000000"
+    app:itemIconTint="@android:color/black"
+    app:itemTextColor="@android:color/black"
+    app:elevation="0.01dp"
+    app:menu="@menu/bottom_navigation" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="40dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="300dp"
-        android:background="@drawable/icon02" />
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:navGraph="@navigation/mobile_navigation" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="40dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="245dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="300dp"
-        android:background="@drawable/icon04" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="40dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="340dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="300dp"
-        android:background="@drawable/icon05" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="40dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="300dp"
-        android:background="@drawable/icon03" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/food" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="300dp"
-        app:srcCompat="@drawable/promotion03" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="125dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="470dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="300dp"
-        android:background="@drawable/order_button_02" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="300dp"
-        app:srcCompat="@drawable/bk" />
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
