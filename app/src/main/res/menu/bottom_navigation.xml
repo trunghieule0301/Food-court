@@ -12,11 +12,6 @@
         android:title="Food stall" />
 
     <item
-        android:id="@+id/navigation_promotion"
-        android:icon="@drawable/ic_baseline_local_offer_24"
-        android:title="Promotion" />
-
-    <item
         android:id="@+id/navigation_account"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Account" />

@@ -23,10 +23,4 @@
         android:label="Account"
         tools:layout="@layout/fragment_account" />
 
-    <fragment
-        android:id="@+id/navigation_promotion"
-        android:name="com.example.myapplication.ui.promotion.PromotionFragment"
-        android:label="Promotion"
-        tools:layout="@layout/fragment_promotion" />
-
 </navigation>
