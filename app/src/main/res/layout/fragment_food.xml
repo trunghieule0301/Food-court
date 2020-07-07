@@ -5,7 +5,7 @@
     android:id="@+id/frameFood"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mockup_01"
+    android:background="@android:color/white"
     tools:context=".ui.foodstall.FoodFragment">
 
     <ImageView
@@ -14,8 +14,7 @@
         android:layout_marginLeft="325dp"
         android:background="@android:color/transparent"
         android:layout_marginTop="15dp"
-        android:src="@drawable/ic_baseline_shopping_cart_24"
-        />
+        android:src="@drawable/ic_baseline_shopping_cart_24" />
 
     <TextView
         android:textSize="40dp"
@@ -26,35 +25,24 @@
         android:layout_marginLeft="368dp"
         android:text="0" />
 
-    <Button
-        android:id="@+id/button_purchase"
-        android:elevation="8dp"
-        android:layout_width="170dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginStart="220dp"
-        android:textAlignment="center"
-        android:background="#ffd700"
-        app:cornerRadius="18dp"
-        android:textSize="30dp"
-        android:fontFamily="@font/icel"
-        android:text="Purchase" />
+
 
     <ScrollView
         android:layout_marginTop="100dp"
         android:layout_marginBottom="55dp"
+        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
             android:weightSum="5.5"
-            android:background="@drawable/mockup_01"
-            android:backgroundTint="@color/cardview_shadow_end_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <GridLayout
+                android:background="@drawable/mockup_01"
+                android:backgroundTint="@color/cardview_shadow_end_color"
                 android:columnCount="2"
                 android:rowCount="4"
                 android:layout_weight="4.5"
@@ -67,7 +55,6 @@
                 <!-- Row 1 -->
                 <!-- Column 1 -->
                 <androidx.cardview.widget.CardView
-
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_columnWeight="1"
@@ -737,5 +724,29 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@android:color/white"
+        android:layout_marginTop="575dp">
+
+        <Button
+            android:id="@+id/button_purchase"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:elevation="8dp"
+            android:layout_marginLeft="217dp"
+            android:layout_width="190dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="3dp"
+            android:textAlignment="center"
+            android:background="@android:color/holo_orange_light"
+            app:cornerRadius="18dp"
+            android:textSize="30dp"
+            android:fontFamily="@font/icel"
+            android:text="Purchase" />
+
+    </RelativeLayout>
 
 </FrameLayout>

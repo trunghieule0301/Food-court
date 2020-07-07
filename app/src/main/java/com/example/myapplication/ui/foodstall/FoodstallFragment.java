@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -26,6 +28,7 @@ public class FoodstallFragment extends Fragment {
 
     ImageButton btnStall1;
     Fragment myFragment;
+    GridLayout mainGrid;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -48,17 +51,36 @@ public class FoodstallFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         foodstall1ViewModel = ViewModelProviders.of(this).get(FoodstallViewModel.class);
         // TODO: Use the ViewModel
-        btnStall1 = (ImageButton) view.findViewById(R.id.stall1);
-        btnStall1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myFragment = new FoodFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frameFoodstall, myFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
+        mainGrid = (GridLayout) view.findViewById(R.id.mainGrid);
+
+        setSingleEvent(mainGrid);
+
     }
+
+    private void setSingleEvent(GridLayout mainGrid) {
+        //Loop all child item of Main Grid
+        for (int i = 0; i < mainGrid.getChildCount(); i++) {
+            //You can see , all child item is CardView , so we just cast object to CardView
+            CardView cardView = (CardView) mainGrid.getChildAt(i);
+            final int finalI = i;
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if(finalI == 0) {
+
+                        myFragment = new FoodFragment();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frameFoodstall, myFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+
+                    }
+
+                }
+            });
+        }
+    }
+
 }

@@ -25,7 +25,6 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    Context thiscontext;
 
     private HomeViewModel homeViewModel;
 
@@ -41,8 +40,6 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
-
-        thiscontext = container.getContext();
 
         return root;
     }
