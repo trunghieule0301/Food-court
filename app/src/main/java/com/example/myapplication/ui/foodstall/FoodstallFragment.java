@@ -1,14 +1,11 @@
 package com.example.myapplication.ui.foodstall;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,18 +15,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.RecyclerViewAdapter;
+
 
 public class FoodstallFragment extends Fragment {
 
     private FoodstallViewModel foodstallViewModel;
     private FoodstallViewModel foodstall1ViewModel;
 
-    ImageButton btnStall1;
     Fragment myFragment;
     GridLayout mainGrid;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,9 +51,7 @@ public class FoodstallFragment extends Fragment {
         foodstall1ViewModel = ViewModelProviders.of(this).get(FoodstallViewModel.class);
         // TODO: Use the ViewModel
         mainGrid = (GridLayout) view.findViewById(R.id.mainGrid);
-
         setSingleEvent(mainGrid);
-
     }
 
     private void setSingleEvent(GridLayout mainGrid) {
@@ -68,14 +65,12 @@ public class FoodstallFragment extends Fragment {
                 public void onClick(View view) {
 
                     if(finalI == 0) {
-
                         myFragment = new FoodFragment();
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frameFoodstall, myFragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
-
                     }
 
                 }

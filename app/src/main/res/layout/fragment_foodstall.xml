@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".ui.foodstall.FoodstallFragment">
+    android:padding="8dp"
+    tools:context=".ui.foodstall.FoodstallFragment"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/text_foodstall"
@@ -41,6 +43,11 @@
                 android:fontFamily="@font/icel"
                 android:textAlignment="center"
                 android:textSize="50dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <GridLayout
                 android:id="@+id/mainGrid"
@@ -85,7 +92,6 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- Column 2 -->
                 <androidx.cardview.widget.CardView
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -114,251 +120,89 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- Row 1 -->
-                <!-- Column 1 -->
                 <androidx.cardview.widget.CardView
-
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_columnWeight="1"
                     android:layout_rowWeight="1"
-                    android:layout_marginBottom="16dp"
+                    android:layout_columnWeight="1"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="8dp">
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
 
                     <LinearLayout
-                        android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
                         android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/stall_09"/>
+                            android:src="@drawable/stall_09" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- Column 2 -->
                 <androidx.cardview.widget.CardView
-
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_columnWeight="1"
                     android:layout_rowWeight="1"
-                    android:layout_marginBottom="16dp"
+                    android:layout_columnWeight="1"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="8dp">
-
-                    <LinearLayout
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/stall_09"
-                            android:layout_gravity="center_vertical"/>
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <!-- Row 1 -->
-                <!-- Column 1 -->
-                <androidx.cardview.widget.CardView
-
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
 
                     <LinearLayout
-                        android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/stall_09"
-                            android:layout_gravity="center_vertical"/>
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <!-- Column 2 -->
-                <androidx.cardview.widget.CardView
-
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="8dp">
-
-                    <LinearLayout
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/stall_09"
-                            android:layout_gravity="center_vertical"/>
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <!-- Row 1 -->
-                <!-- Column 1 -->
-                <androidx.cardview.widget.CardView
-
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="8dp">
-
-                    <LinearLayout
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/stall_09"
-                            android:layout_gravity="center_vertical"/>
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <!-- Column 2 -->
-                <androidx.cardview.widget.CardView
-
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="8dp">
-
-                    <LinearLayout
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/stall_09"/>
+                            android:src="@drawable/stall_09" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- Row 1 -->
-                <!-- Column 1 -->
                 <androidx.cardview.widget.CardView
-
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_columnWeight="1"
                     android:layout_rowWeight="1"
-                    android:layout_marginBottom="16dp"
+                    android:layout_columnWeight="1"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="8dp">
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
 
                     <LinearLayout
-                        android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
                         android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/stall_09"/>
+                            android:src="@drawable/stall_09" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-
-                <!-- Column 2 -->
-                <androidx.cardview.widget.CardView
-
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="8dp">
-
-                    <LinearLayout
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/stall_09"/>
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-
 
             </GridLayout>
 

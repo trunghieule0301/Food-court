@@ -9,6 +9,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.RecyclerViewAdapter;
 
 public class FoodFragment extends Fragment {
 
@@ -58,9 +61,17 @@ public class FoodFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_food, container, false);
-    }
+        foodViewModel =
+                ViewModelProviders.of(this).get(FoodViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_food, container, false);
 
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview_id_in_food_frag);
+        RecyclerViewAdapter listAdapter = new RecyclerViewAdapter();
+        recyclerView.setAdapter(listAdapter);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        recyclerView.setLayoutManager(layoutManager);
+        return root;
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
