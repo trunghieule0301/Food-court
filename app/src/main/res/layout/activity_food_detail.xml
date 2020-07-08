@@ -53,6 +53,7 @@
 
             <Button
                 android:id="@+id/buttonMul"
+                android:layout_marginLeft="0dp"
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
@@ -63,12 +64,13 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="100dp"
+                android:layout_width="165dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_baseline_add_24"
                 android:fontFamily="@font/icel"
                 android:textSize="90dp"
+                android:textColor="@android:color/black"
                 android:textAlignment="center"
                 android:text="0"/>
 

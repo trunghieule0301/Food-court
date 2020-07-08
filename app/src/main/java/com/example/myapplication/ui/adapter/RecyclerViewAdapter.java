@@ -1,29 +1,20 @@
-package com.example.myapplication;
+package com.example.myapplication.ui.adapter;
 
-import android.content.Context;
 import android.content.Intent;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.myapplication.ui.foodstall.FoodFragment;
+import com.example.myapplication.R;
+import com.example.myapplication.ourData;
 import com.example.myapplication.ui.foodstall.foodDetail;
-
-import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
@@ -58,10 +49,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView textView;
         TextView textView2;
         ImageView img_food_thumbnail;
-        CardView cardView ;
-        ImageButton buttonAdd;
-        ImageButton buttonMul;
-        TextView textResult;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -69,8 +56,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             textView = (TextView) itemView.findViewById(R.id.name_of_food);
             textView2 = (TextView) itemView.findViewById(R.id.description_of_food);
             img_food_thumbnail = (ImageView) itemView.findViewById(R.id.food_icon);
-            cardView = (CardView) itemView.findViewById(R.id.cardview_id);
-            textResult = (TextView) itemView.findViewById(R.id.textView2);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,7 +67,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     view.getContext().startActivity(i);
                 }
             });
-
         }
 
         public void bindView(int position){

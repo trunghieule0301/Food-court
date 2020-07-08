@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.RecyclerViewAdapter;
+import com.example.myapplication.ui.adapter.FoodstallRecyclerViewAdapter;
 
 
 public class FoodstallFragment extends Fragment {
@@ -42,6 +42,13 @@ public class FoodstallFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview_id_in_foodstall_frag);
+        FoodstallRecyclerViewAdapter listAdapter = new FoodstallRecyclerViewAdapter();
+        recyclerView.setAdapter(listAdapter);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        recyclerView.setLayoutManager(layoutManager);
+
         return root;
     }
 
@@ -72,7 +79,6 @@ public class FoodstallFragment extends Fragment {
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                     }
-
                 }
             });
         }

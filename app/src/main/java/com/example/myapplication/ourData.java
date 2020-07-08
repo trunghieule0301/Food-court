@@ -14,6 +14,20 @@ public class ourData {
             "description for food 3"
     };
 
+    public static String[] foodstallName = new String[]{
+            "stall 1",
+            "stall 2",
+            "stall 3",
+            "stall 4"
+    };
+
+    public static int[] Foodstall = new int[]{
+            R.drawable.stall_07,
+            R.drawable.stall_09,
+            R.drawable.stall_10,
+            R.drawable.stall_07
+    };
+
     public static int[] picturePath = new int[]{
             R.drawable.stall_09,
             R.drawable.stall_07,

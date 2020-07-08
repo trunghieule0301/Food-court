@@ -20,7 +20,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.RecyclerViewAdapter;
+import com.example.myapplication.ui.adapter.RecyclerViewAdapter;
 
 public class FoodFragment extends Fragment {
 
