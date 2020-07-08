@@ -3,14 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:id="@+id/cardview_id_1"
-    android:layout_width="170dp"
-    android:layout_height="wrap_content"
+    android:id="@+id/cardview_food_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:backgroundTint="@android:color/transparent"
     android:layout_margin="15dp"
     android:elevation="0dp"
+    android:clickable="true"
     app:cardElevation="0dp"
     cardview:cardCornerRadius="0dp">
 
@@ -23,8 +22,8 @@
         <ImageView
             android:id="@+id/food_icon"
             android:layout_marginTop="15dp"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:background="@android:color/transparent"
             android:layout_gravity="center_horizontal"/>
         <TextView
@@ -45,6 +44,45 @@
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="20dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <Button
+                android:id="@+id/buttonMul"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="-"
+                android:textSize="90dp"/>
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_baseline_add_24"
+                android:fontFamily="@font/icel"
+                android:textSize="90dp"
+                android:textAlignment="center"
+                android:text="0"/>
+
+
+            <Button
+                android:id="@+id/buttonAdd"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="+"
+                android:textSize="90dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

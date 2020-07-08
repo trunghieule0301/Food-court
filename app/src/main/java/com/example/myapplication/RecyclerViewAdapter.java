@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.ui.foodstall.FoodFragment;
+import com.example.myapplication.ui.foodstall.foodDetail;
 
 import java.util.List;
 
@@ -69,9 +70,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             textView2 = (TextView) itemView.findViewById(R.id.description_of_food);
             img_food_thumbnail = (ImageView) itemView.findViewById(R.id.food_icon);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
-            buttonAdd = (ImageButton) itemView.findViewById(R.id.buttonAdd);
-            buttonMul = (ImageButton) itemView.findViewById(R.id.buttonMul);
             textResult = (TextView) itemView.findViewById(R.id.textView2);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(view.getContext(), foodDetail.class);
+                    i.putExtra("title", ourData.title1[getAdapterPosition()]);
+                    i.putExtra("title1", ourData.title2[getAdapterPosition()]);
+                    i.putExtra("icon", ourData.picturePath[getAdapterPosition()]);
+                    view.getContext().startActivity(i);
+                }
+            });
+
         }
 
         public void bindView(int position){
