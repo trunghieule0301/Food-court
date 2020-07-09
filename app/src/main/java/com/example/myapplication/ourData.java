@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import java.util.ArrayList;
+
 public class ourData {
 
     public static String[] title1 = new String[]{
@@ -33,5 +35,5 @@ public class ourData {
             R.drawable.stall_07,
             R.drawable.stall_10
     };
-
 }
+

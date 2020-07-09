@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 import java.lang.String;
