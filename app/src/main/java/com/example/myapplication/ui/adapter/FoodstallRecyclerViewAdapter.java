@@ -1,88 +1,88 @@
 package com.example.myapplication.ui.adapter;
 
-import android.content.Intent;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ourData;
+import com.example.myapplication.model.Categories;
 import com.example.myapplication.ui.foodstall.FoodFragment;
-import com.example.myapplication.ui.foodstall.foodDetail;
+import com.example.myapplication.ui.foodstall.FoodstallFragment;
+import com.squareup.picasso.Picasso;
+
+import java.io.ObjectInputStream;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class FoodstallRecyclerViewAdapter extends RecyclerView.Adapter<FoodstallRecyclerViewAdapter.MyViewHolder> {
 
-    Fragment myFragment;
-    FragmentActivity c;
+    private List<Categories.Category> categories;
+    private FoodstallFragment context;
+    private static ClickListener clickListener;
 
+    public FoodstallRecyclerViewAdapter(List<Categories.Category> categories, FoodstallFragment context) {
+        this.categories = categories;
+        this.context = context;
+    }
+
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
+    public FoodstallRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view ;
         LayoutInflater mInflater = LayoutInflater.from(parent.getContext());
         view = mInflater.inflate(R.layout.foodstall_item,parent,false);
-        final FoodstallRecyclerViewAdapter.MyViewHolder viewHolder = new FoodstallRecyclerViewAdapter.MyViewHolder(view);
 
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(FoodstallRecyclerViewAdapter.MyViewHolder holder, final int position) {
-
-        ((MyViewHolder) holder).bindView(position);
-
+        String strCategoryThum = categories.get(position).getStrCategoryThumb();
+        Picasso.get().load(strCategoryThum).placeholder(R.drawable.ic_circle).into(holder.categoryThumb);
+        String strCategoryName = categories.get(position).getStrCategory();
+        holder.categoryName.setText(strCategoryName);
     }
 
     @Override
     public int getItemCount() {
-        return ourData.foodstallName.length;
+        return categories.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private CardView itemFoodstall;
-        TextView textView;
-        ImageView img_food_thumbnail;
-        FragmentActivity c;
+        @BindView(R.id.foodstall_img_id)
+        ImageView categoryThumb;
+        @BindView(R.id.foodstall_title_id)
+        TextView categoryName;
 
-        public MyViewHolder(final View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemFoodstall = (CardView) itemView.findViewById(R.id.cardview_id);
-            textView = (TextView) itemView.findViewById(R.id.foodstall_title_id);
-            img_food_thumbnail = (ImageView) itemView.findViewById(R.id.foodstall_img_id);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    FragmentActivity activity = (FragmentActivity) view.getContext();
-                    Fragment myFragment = new FoodFragment();
-                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameFoodstall, myFragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
-
-                }
-            });
+            ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
         }
 
-        public void bindView(int position){
-            img_food_thumbnail.setImageResource(ourData.Foodstall[position]);
-            textView.setText(ourData.foodstallName[position]);
-        }
-
-        public void onClick(View view) {
+        @Override
+        public void onClick(View v) {
+            clickListener.onClick(v, getAdapterPosition());
         }
     }
+
+    public void setOnItemClickListener(ClickListener clickListener) {
+        FoodstallRecyclerViewAdapter.clickListener = clickListener;
+    }
+
+    public interface ClickListener {
+        void onClick(View view, int position);
+    }
+
 }

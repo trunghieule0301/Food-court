@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.foodstall;
+package com.example.myapplication.ui.ViewModel;
 
 import androidx.lifecycle.ViewModel;
 

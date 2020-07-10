@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.foodstall;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -19,35 +20,36 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.ui.ViewModel.FoodstallViewModel;
 import com.example.myapplication.ui.adapter.FoodstallRecyclerViewAdapter;
+import com.example.myapplication.model.Categories;
+import com.example.myapplication.model.Meals;
+
+import java.io.Serializable;
+import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
-public class FoodstallFragment extends Fragment {
+public class FoodstallFragment extends Fragment implements FoodstallView {
+
+    public static final String EXTRA_CATEGORY = "category";
+    public static final String EXTRA_POSITION = "position";
+    public static final String EXTRA_DETAIL = "detail";
+
+    private List<Categories.Category> categories;
 
     private FoodstallViewModel foodstallViewModel;
-    private FoodstallViewModel foodstall1ViewModel;
+    @BindView(R.id.recyclerview_id_in_foodstall_frag) RecyclerView recyclerViewCategory;
 
-    Fragment myFragment;
-    GridLayout mainGrid;
+    FoodstallPresenter presenter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         foodstallViewModel =
                 ViewModelProviders.of(this).get(FoodstallViewModel.class);
         View root = inflater.inflate(R.layout.fragment_foodstall, container, false);
-        final TextView textView = root.findViewById(R.id.text_foodstall);
-        foodstallViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview_id_in_foodstall_frag);
-        FoodstallRecyclerViewAdapter listAdapter = new FoodstallRecyclerViewAdapter();
-        recyclerView.setAdapter(listAdapter);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        recyclerView.setLayoutManager(layoutManager);
+        ButterKnife.bind(this, root);
 
         return root;
     }
@@ -55,33 +57,42 @@ public class FoodstallFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        foodstall1ViewModel = ViewModelProviders.of(this).get(FoodstallViewModel.class);
-        // TODO: Use the ViewModel
-        mainGrid = (GridLayout) view.findViewById(R.id.mainGrid);
-        setSingleEvent(mainGrid);
+
+        presenter = new FoodstallPresenter(this);
+        presenter.getMeals();
+        presenter.getCategories();
+
     }
 
-    private void setSingleEvent(GridLayout mainGrid) {
-        //Loop all child item of Main Grid
-        for (int i = 0; i < mainGrid.getChildCount(); i++) {
-            //You can see , all child item is CardView , so we just cast object to CardView
-            CardView cardView = (CardView) mainGrid.getChildAt(i);
-            final int finalI = i;
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+    @Override
+    public void setMeal(List<Meals.Meal> meal) {
 
-                    if(finalI == 0) {
-                        myFragment = new FoodFragment();
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frameFoodstall, myFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                    }
-                }
-            });
-        }
+    }
+
+    @Override
+    public void setCategory(final List<Categories.Category> category) {
+        FoodstallRecyclerViewAdapter homeAdapter = new FoodstallRecyclerViewAdapter(category, this);
+        recyclerViewCategory.setAdapter(homeAdapter);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        recyclerViewCategory.setLayoutManager(layoutManager);
+        recyclerViewCategory.setNestedScrollingEnabled(true);
+        homeAdapter.notifyDataSetChanged();
+
+        homeAdapter.setOnItemClickListener((view, position) -> {
+
+            FragmentActivity activity = (FragmentActivity) view.getContext();
+            Fragment myFragment = new FoodFragment();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(EXTRA_CATEGORY, (Serializable) category);
+            bundle.putInt(EXTRA_POSITION, position);
+            myFragment.setArguments(bundle);
+            FragmentManager fragmentManager = activity.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameFoodstall, myFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
     }
 
 }
