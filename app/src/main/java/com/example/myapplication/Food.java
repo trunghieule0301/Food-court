@@ -5,12 +5,14 @@ public class Food {
     private String name;
     private String IDstall;
     private float Price;
+    private String Url;
 
-    public Food(String ID, String name, String IDstall, float price) {
+    public Food(String ID, String name, String IDstall, float price, String url) {
         this.ID = ID;
         this.name = name;
         this.IDstall = IDstall;
         this.Price = price;
+        this.Url = url;
     }
 
     public String getID() {
@@ -43,5 +45,13 @@ public class Food {
 
     public void setPrice(Float price) {
         this.Price = price;
+    }
+
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String url) {
+        Url = url;
     }
 }

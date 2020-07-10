@@ -59,13 +59,14 @@ public class MainActivity extends AppCompatActivity {
         */
         arrayStall = new ArrayList<>();
         GetStallData(urlGetStallData);
+//        GetFoodData(urlGetFoodData);
+//        GetOrderData(urlGetOrderData);
+//        GetDetailOrderData(urlGetDetailOrderData);
         /*
         ===============================================================================
         */
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-//        GetStallData(urlGetStallData);
-
     }
 
 
@@ -79,12 +80,14 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-//                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
                                 arrayStall.add(new Stall(
-                                   object.getString("ID"), object.getString("Name"), object.getString("Url")
+                                        object.getString("ID"),
+                                        object.getString("Name"),
+                                        object.getString("Url")
                                 ));
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Load data fail due to:" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        requestQueue.add(jsonArrayRequest);
     }
 
     public void GetFoodData(String url){
@@ -106,14 +110,16 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
                                 arrayFood.add(new Food(
-                                   object.getString("ID"),
-                                   object.getString("Name"),
+                                        object.getString("ID"),
+                                        object.getString("Name"),
                                         object.getString("IDstall"),
-                                        (float) object.getDouble("Price")
+                                        (float) object.getDouble("Price"),
+                                        object.getString("Url")
                                 ));
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -128,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        requestQueue.add(jsonArrayRequest);
     }
 
     public void GetOrderData(String url){
@@ -136,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -160,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        requestQueue.add(jsonArrayRequest);
     }
 
     public void GetDetailOrderData(String url){
@@ -168,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -190,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+        requestQueue.add(jsonArrayRequest);
     }
     /*
     =====================================================================================================
@@ -210,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new AccountFragment();
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, selectedFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,  selectedFragment).commit();
             return true;
         }
     };
