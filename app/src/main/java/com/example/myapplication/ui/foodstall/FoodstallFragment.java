@@ -81,18 +81,6 @@ public class FoodstallFragment extends Fragment implements FoodstallView {
 
         homeAdapter.setOnItemClickListener((view, position) -> {
 
-            FragmentActivity activity = (FragmentActivity) view.getContext();
-            Fragment myFragment = new FoodFragment();
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(EXTRA_CATEGORY, (Serializable) category);
-            bundle.putInt(EXTRA_POSITION, position);
-            myFragment.setArguments(bundle);
-            FragmentManager fragmentManager = activity.getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameFoodstall, myFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
         });
     }
 

@@ -2,6 +2,10 @@ package com.example.myapplication.ui.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -74,11 +78,16 @@ public class FoodstallRecyclerViewAdapter extends RecyclerView.Adapter<Foodstall
 
         @Override
         public void onClick(View v) {
-            FoodFragment fragment = new FoodFragment();
+            FragmentActivity activity = (FragmentActivity) v.getContext();
+            Fragment fragment = new FoodFragment();
             Bundle args = new Bundle();
             args.putString("EXTRA_DATA_NAME", categories.get(getAdapterPosition()).getStrCategory());
-            Toast.makeText(v.getContext(), "test click " + categories.get(getAdapterPosition()).getStrCategory(), Toast.LENGTH_SHORT).show();
             fragment.setArguments(args);
+            FragmentManager fragmentManager = activity.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameFoodstall, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
             clickListener.onClick(v, getAdapterPosition());
         }
     }

@@ -62,6 +62,7 @@ public class FoodFragment extends Fragment implements FoodView {
         super.onViewCreated(view, savedInstanceState);
         if (getArguments() != null) {
             presenter = new FoodPresenter(this);
+            Toast.makeText(view.getContext(), "test click " + getArguments().getString("EXTRA_DATA_NAME"), Toast.LENGTH_SHORT).show();
             presenter.getMealByCategory(getArguments().getString("EXTRA_DATA_NAME"));
         }
     }
