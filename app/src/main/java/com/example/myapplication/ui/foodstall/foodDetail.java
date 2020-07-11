@@ -4,32 +4,63 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.Meals;
+import com.squareup.picasso.Picasso;
 
-public class foodDetail extends AppCompatActivity {
+import static com.example.myapplication.ui.foodstall.FoodstallFragment.EXTRA_DETAIL;
 
-    TextView textView,textView2;
+public class foodDetail extends AppCompatActivity implements FoodDetailView {
+
+    @BindView(R.id.food_icon_detail)
+    ImageView mealThumb;
+
+    @BindView(R.id.description_of_food_detail)
+    TextView instructions;
+
+    @BindView(R.id.name_of_food_detail)
+    TextView nameMeal;
+
+    @BindView(R.id.buttonMul)
+    Button buttonMul;
+
+    @BindView(R.id.buttonAdd)
+    Button buttonAdd;
+
+    @BindView(R.id.textResult)
+    TextView textResult;
+
+    public static String NameOfMeal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
+        ButterKnife.bind(this);
 
-        ImageView iconFood = findViewById(R.id.food_icon);
-        textView = findViewById(R.id.name_of_food_detail);
-        textView2 = findViewById(R.id.description_of_food_detail);
+        Intent intent = getIntent();
+        String mealName = intent.getStringExtra(EXTRA_DETAIL);
+        NameOfMeal = intent.getStringExtra(EXTRA_DETAIL);
+        FoodDetailPresenter presenter = new FoodDetailPresenter(this);
+        Toast.makeText(this, "meal: " + mealName, Toast.LENGTH_SHORT).show();
+        presenter.getMealByID(mealName);
+    }
 
-        Intent i = getIntent();
-        String name = i.getStringExtra("title");
-        String description = i.getStringExtra("title1");
-        String foodIcon = i.getStringExtra("icon");
-        textView.setText(name);
-        textView2.setText(description);
-        Toast.makeText(getApplicationContext(), "test " + foodIcon, Toast.LENGTH_SHORT).show();
+    @Override
+    public void setMeal(Meals.Meal meal) {
+        Picasso.get().load(meal.getStrMealThumb()).into(mealThumb);
+        instructions.setText(meal.getStrInstructions());
+        nameMeal.setText(NameOfMeal);
+        buttonAdd.setText("+");
+        buttonMul.setText("-");
+        textResult.setText("0");
     }
 }

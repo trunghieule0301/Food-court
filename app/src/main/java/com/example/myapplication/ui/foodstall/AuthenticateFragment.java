@@ -1,7 +1,5 @@
 package com.example.myapplication.ui.foodstall;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ui.ViewModel.AuthenticateViewModel;
 
 public class AuthenticateFragment extends Fragment {
 
@@ -36,7 +33,6 @@ public class AuthenticateFragment extends Fragment {
     TextView txtTotalPrice;
     Bundle bundle;
     int[] tong = new int[6];
-    private AuthenticateViewModel authenticateViewModel;
 
     public static AuthenticateFragment newInstance() {
         return new AuthenticateFragment();
@@ -59,7 +55,6 @@ public class AuthenticateFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        authenticateViewModel = ViewModelProviders.of(this).get(AuthenticateViewModel.class);
         // TODO: Use the ViewModel
         txtQty1 = (TextView) view.findViewById(R.id.txtQty1);
         txtQty2 = (TextView) view.findViewById(R.id.txtQty2);

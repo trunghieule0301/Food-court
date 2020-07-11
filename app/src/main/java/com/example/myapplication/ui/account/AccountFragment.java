@@ -6,25 +6,19 @@ import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 
 import com.example.myapplication.Customer;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.ViewModel.AccountViewModel;
 
 import java.util.ArrayList;
 
 public class AccountFragment extends Fragment {
-    private AccountViewModel accountViewModel;
 
     Button buttonLogin, buttonRegister;
     EditText editTextAccount, editTextPassword;
@@ -32,8 +26,6 @@ public class AccountFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        accountViewModel =
-                ViewModelProviders.of(this).get(AccountViewModel.class);
         View root = inflater.inflate(R.layout.fragment_account, container, false);
 
         buttonLogin = (Button) root.findViewById(R.id.btnLogin);

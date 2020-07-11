@@ -40,6 +40,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/NameOfFoodStall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:textSize="50dp"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_id_in_food_frag"
                 android:layout_width="match_parent"
