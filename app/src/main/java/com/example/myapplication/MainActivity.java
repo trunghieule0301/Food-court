@@ -36,12 +36,14 @@ public class MainActivity extends AppCompatActivity {
     public String urlGetStallData = "http://foodcourt2020.medianewsonline.com/getStallData.php";
     public String urlGetFoodData = "http://foodcourt2020.medianewsonline.com/getFoodData.php";
     public String urlGetOrderData = "http://foodcourt2020.medianewsonline.com/getOrderData.php";
-    public String urlGetDetailOrderData = "http://foodcourt2020.medianewsonline.com/getDetailOrderData.php";
+    public String urlGetDetailOrderData = "http://foodcourt2020.medianewsonline.com/getDetailOrder.php";
+    public String urlGetCusData = "http://foodcourt2020.medianewsonline.com/getCusData.php";
 //
-    ArrayList<Stall> arrayStall;
-    ArrayList<Food> arrayFood;
-    ArrayList<Order> arrayOrder;
-    ArrayList<DetailOrder> arrayDetailOrder;
+    public ArrayList<Stall> arrayStall;
+    public ArrayList<Food> arrayFood;
+    public ArrayList<Order> arrayOrder;
+    public ArrayList<DetailOrder> arrayDetailOrder;
+    public ArrayList<Customer> arrayListCustomer;
     /*
     ===============================================================================
     */
@@ -58,15 +60,22 @@ public class MainActivity extends AppCompatActivity {
         Dang Nguyen connect DATA  =======================================================
         */
         arrayStall = new ArrayList<>();
-        GetStallData(urlGetStallData);
+        arrayFood  = new ArrayList<>();
+        arrayOrder = new ArrayList<>();
+        arrayDetailOrder = new ArrayList<>();
+        arrayListCustomer = new ArrayList<>();
+
+//        GetStallData(urlGetStallData);
 //        GetFoodData(urlGetFoodData);
 //        GetOrderData(urlGetOrderData);
 //        GetDetailOrderData(urlGetDetailOrderData);
+//        GetCustomerData(urlGetCusData);
         /*
         ===============================================================================
         */
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
     }
 
 
@@ -80,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Get stall data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -110,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Get food data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -143,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Get Order data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -177,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Get detail order success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -202,6 +211,41 @@ public class MainActivity extends AppCompatActivity {
                 });
         requestQueue.add(jsonArrayRequest);
     }
+
+    public void GetCustomerData(String url, ArrayList<Customer> arrayListCustomer){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Toast.makeText(MainActivity.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
+                        for (int i = 0;i < response.length(); i++){
+                            try {
+                                JSONObject object = response.getJSONObject(i);
+                                arrayListCustomer.add(new Customer(
+                                        object.getInt("ID"),
+                                        object.getString("Account"),
+                                        object.getString("Name"),
+                                        object.getString("Email"),
+                                        object.getString("PassWord"),
+                                        object.getInt("Age"),
+                                        object.getString("Sex"),
+                                        object.getString("Address")));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequest);
+    }
+
     /*
     =====================================================================================================
     */
