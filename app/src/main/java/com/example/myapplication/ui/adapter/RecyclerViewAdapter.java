@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.Categories;
@@ -32,7 +33,7 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-    private List<Meals.Meal> meals;
+    private static List<Meals.Meal> meals;
     private FoodFragment context;
     private static ClickListener clickListener;
 
@@ -90,20 +91,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             textView = (TextView) itemView.findViewById(R.id.name_of_food);
             img_food_thumbnail = (ImageView) itemView.findViewById(R.id.food_icon);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(view.getContext(), foodDetail.class);
-                    i.putExtra("title", ourData.title1[getAdapterPosition()]);
-                    i.putExtra("title1", ourData.title2[getAdapterPosition()]);
-                    i.putExtra("icon", ourData.picturePath[getAdapterPosition()]);
-                    view.getContext().startActivity(i);
-                }
-            });
         }
 
         @Override
         public void onClick(View v) {
+            Intent i = new Intent(v.getContext(), foodDetail.class);
+            i.putExtra("title", meals.get(getAdapterPosition()).getStrMeal());
+            i.putExtra("title1", meals.get(getAdapterPosition()).getStrMeal());
+            i.putExtra("icon", meals.get(getAdapterPosition()).getStrMealThumb());
+            v.getContext().startActivity(i);
+            Toast.makeText(v.getContext(), "test click " + meals.get(getAdapterPosition()).getStrMeal(), Toast.LENGTH_SHORT).show();
             clickListener.onClick(v, getAdapterPosition());
         }
     }

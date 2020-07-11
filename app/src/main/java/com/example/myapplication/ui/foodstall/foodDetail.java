@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 
@@ -20,14 +21,15 @@ public class foodDetail extends AppCompatActivity {
         setContentView(R.layout.activity_food_detail);
 
         ImageView iconFood = findViewById(R.id.food_icon);
-        textView = findViewById(R.id.name_of_food);
+        textView = findViewById(R.id.name_of_food_detail);
+        textView2 = findViewById(R.id.description_of_food_detail);
 
         Intent i = getIntent();
         String name = i.getStringExtra("title");
         String description = i.getStringExtra("title1");
-        int foodIcon = i.getIntExtra("icon", 0);
+        String foodIcon = i.getStringExtra("icon");
         textView.setText(name);
         textView2.setText(description);
-        iconFood.setImageResource(foodIcon);
+        Toast.makeText(getApplicationContext(), "test " + foodIcon, Toast.LENGTH_SHORT).show();
     }
 }
