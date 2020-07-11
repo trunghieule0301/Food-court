@@ -40,7 +40,8 @@ public class FoodstallFragment extends Fragment implements FoodstallView {
     private List<Categories.Category> categories;
 
     private FoodstallViewModel foodstallViewModel;
-    @BindView(R.id.recyclerview_id_in_foodstall_frag) RecyclerView recyclerViewCategory;
+    @BindView(R.id.recyclerview_id_in_foodstall_frag)
+    RecyclerView recyclerViewCategory;
 
     FoodstallPresenter presenter;
 

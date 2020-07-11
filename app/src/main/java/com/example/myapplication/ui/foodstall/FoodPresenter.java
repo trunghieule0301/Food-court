@@ -16,6 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FoodPresenter {
+
     private FoodView view;
 
     public FoodPresenter(FoodView view) {
@@ -30,7 +31,9 @@ public class FoodPresenter {
             public void onResponse(@NonNull Call<Meals> call, @NonNull Response<Meals> response) {
 
                 if (response.isSuccessful() && response.body() != null) {
+
                     view.setMeals(response.body().getMeals());
+
                 }
             }
 
@@ -39,6 +42,5 @@ public class FoodPresenter {
 
             }
         });
-        
     }
 }

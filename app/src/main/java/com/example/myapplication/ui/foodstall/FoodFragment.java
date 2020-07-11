@@ -22,11 +22,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.Categories;
 import com.example.myapplication.model.Meals;
 import com.example.myapplication.ui.ViewModel.FoodViewModel;
+import com.example.myapplication.ui.adapter.FoodstallRecyclerViewAdapter;
 import com.example.myapplication.ui.adapter.RecyclerViewAdapter;
 import com.example.myapplication.ui.foodstall.FoodFragment;
 
@@ -34,6 +36,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FoodFragment extends Fragment implements FoodView {
 
@@ -42,28 +45,32 @@ public class FoodFragment extends Fragment implements FoodView {
     @BindView(R.id.recyclerview_id_in_food_frag)
     RecyclerView recyclerView;
 
+    FoodPresenter presenter;
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container,
+                             Bundle savedInstanceState) {
         foodViewModel =
                 ViewModelProviders.of(this).get(FoodViewModel.class);
         View root = inflater.inflate(R.layout.fragment_food, container, false);
         ButterKnife.bind(this, root);
-
         return root;
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        FoodPresenter presenter = new FoodPresenter(this);
-        presenter.getMealByCategory(getArguments().getString("EXTRA_DATA_NAME"));
+        if (getArguments() != null) {
+            presenter = new FoodPresenter(this);
+            presenter.getMealByCategory(getArguments().getString("EXTRA_DATA_NAME"));
+        }
     }
 
     @Override
     public void setMeals(List<Meals.Meal> meals) {
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, meals);
+
+        RecyclerViewAdapter adapter =
+                new RecyclerViewAdapter(this, meals);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setClipToPadding(false);
         recyclerView.setAdapter(adapter);
@@ -73,7 +80,5 @@ public class FoodFragment extends Fragment implements FoodView {
             //TODO #8.2 make an intent to DetailActivity (get the name of the meal from the edit text view, then send the name of the meal to DetailActivity)
         });
     }
-
-
 
 }

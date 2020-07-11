@@ -32,10 +32,6 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-    Fragment myFragment;
-
-    private List<Categories.Category> categories;
-
     private List<Meals.Meal> meals;
     private FoodFragment context;
     private static ClickListener clickListener;
@@ -58,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
 
         String strMealThumb = meals.get(position).getStrMealThumb();
         Picasso.get().load(strMealThumb).placeholder(R.drawable.shadow_bottom_to_top).into(holder.mealThumb);
@@ -73,7 +69,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return meals.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.food_icon)
         ImageView mealThumb;
@@ -85,14 +81,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView textView2;
         ImageView img_food_thumbnail;
 
-        public MyViewHolder(@NonNull View itemView) {
+        MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
 
             itemFood = (CardView) itemView.findViewById(R.id.cardview_id_1);
             textView = (TextView) itemView.findViewById(R.id.name_of_food);
-            textView2 = (TextView) itemView.findViewById(R.id.description_of_food);
             img_food_thumbnail = (ImageView) itemView.findViewById(R.id.food_icon);
 
             itemView.setOnClickListener(new View.OnClickListener() {

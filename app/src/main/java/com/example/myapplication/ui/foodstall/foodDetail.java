@@ -21,7 +21,6 @@ public class foodDetail extends AppCompatActivity {
 
         ImageView iconFood = findViewById(R.id.food_icon);
         textView = findViewById(R.id.name_of_food);
-        textView2 = findViewById(R.id.description_of_food);
 
         Intent i = getIntent();
         String name = i.getStringExtra("title");
