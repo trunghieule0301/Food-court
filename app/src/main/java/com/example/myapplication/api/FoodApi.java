@@ -15,11 +15,11 @@ import retrofit2.http.Query;
 
 public interface FoodApi {
 
-    @GET("latest.php")
-    Call<Meals> getMeal();
-
-    @GET("categories.php")
+    @GET("getStallData.php")
     Call<Categories> getCategories();
+
+    @GET("getFoodData.php")
+    Call<Meals> getMeal();
 
     @GET("filter.php")
     Call<Meals> getMealByCategory(@Query("c") String category);

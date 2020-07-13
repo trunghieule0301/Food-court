@@ -45,12 +45,10 @@ public class foodDetail extends AppCompatActivity implements FoodDetailView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
         ButterKnife.bind(this);
-
         Intent intent = getIntent();
         String mealName = intent.getStringExtra(EXTRA_DETAIL);
         NameOfMeal = intent.getStringExtra(EXTRA_DETAIL);
         FoodDetailPresenter presenter = new FoodDetailPresenter(this);
-        Toast.makeText(this, "meal: " + mealName, Toast.LENGTH_SHORT).show();
         presenter.getMealByID(mealName);
     }
 

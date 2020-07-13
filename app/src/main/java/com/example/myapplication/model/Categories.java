@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Categories implements Serializable {
 
-    @SerializedName("categories")
+    @SerializedName("Categories")
     @Expose
     private List<Category> categories;
 
@@ -28,13 +28,13 @@ public class Categories implements Serializable {
 
     public static class Category implements Serializable {
 
-        @SerializedName("idCategory")
+        @SerializedName("ID")
         @Expose
         private String idCategory;
-        @SerializedName("strCategory")
+        @SerializedName("Name")
         @Expose
         private String strCategory;
-        @SerializedName("strCategoryThumb")
+        @SerializedName("Url")
         @Expose
         private String strCategoryThumb;
         @SerializedName("strCategoryDescription")
