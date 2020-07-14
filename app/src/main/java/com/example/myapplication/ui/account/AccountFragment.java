@@ -33,7 +33,6 @@ public class AccountFragment extends Fragment {
 
     Button buttonLogin, buttonRegister;
     EditText editTextAccount, editTextPassword;
-//    MainActivity mainActivityData;
     ArrayList<Customer> arrayListCustomer;
     private String url = "http://foodcourt2020.medianewsonline.com/getCusData.php";
     public View onCreateView(@NonNull LayoutInflater inflater,
