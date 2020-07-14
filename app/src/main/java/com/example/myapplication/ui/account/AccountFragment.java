@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.account;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Customer;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.RegisterActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,6 +87,7 @@ public class AccountFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getActivity(), "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
         requestQueue.add(jsonArrayRequest);
@@ -120,6 +123,8 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Register", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                startActivity(intent);
             }
         });
 
