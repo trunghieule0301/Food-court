@@ -7,84 +7,154 @@
     tools:context=".ui.account.AccountFragment"
     android:background="@android:color/white">
 
-<!--        <FrameLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-<!--                <Button-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:background="@android:color/transparent"/>-->
-<!--        </FrameLayout>-->
-<!--        <FrameLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_marginTop="-210dp"-->
-<!--            android:text="BK FOOD COURT"-->
-<!--            android:textSize="40dp"-->
-<!--            android:textColor="@android:color/holo_orange_dark"-->
-<!--            android:textStyle="bold"-->
-<!--            android:fontFamily="@font/icel"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:textAlignment="center" />-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="-170dp"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="@android:color/holo_orange_dark"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:textSize="17dp"-->
-<!--            android:text="Welcome to BK Food Court"/>-->
-<!--        <EditText-->
-<!--            android:id="@+id/edtAccount"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:inputType="text"-->
-<!--            android:hint="User name"-->
-<!--            android:textColorHint="@android:color/holo_orange_dark"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:drawableLeft="@drawable/ic_person"-->
-<!--            android:drawablePadding="10dp"-->
-<!--            android:layout_marginTop="-100dp"-->
-<!--            android:textColor="@android:color/holo_orange_dark"-->
-<!--            android:padding="20dp"-->
-<!--            android:background="@drawable/edit"-->
-<!--        />-->
-<!--        <EditText-->
-<!--            android:id="@+id/edtPassword"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:inputType="textPassword"-->
-<!--            android:hint="Pass word"-->
-<!--            android:textColorHint="@android:color/holo_orange_dark"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:drawableLeft="@drawable/ic_key"-->
-<!--            android:drawablePadding="10dp"-->
-<!--            android:layout_marginTop="-30dp"-->
-<!--            android:textColor="@android:color/holo_orange_dark"-->
-<!--            android:padding="20dp"-->
-<!--            android:background="@drawable/edit"-->
-<!--            />-->
-<!--        <Button-->
-<!--            android:id="@+id/btnLogin"-->
-<!--            android:layout_width="230dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:text="Login"-->
-<!--            android:layout_marginTop="50dp"-->
-<!--            android:background="@drawable/button"-->
-<!--            />-->
-<!--        <Button-->
-<!--            android:id="@+id/btnRegister"-->
-<!--            android:layout_width="230dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:text="Register"-->
-<!--            android:layout_marginTop="100dp"-->
-<!--            android:background="@drawable/button"-->
-<!--            />-->
-<!--        </FrameLayout>-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-100dp" />
+        </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="-280dp"
+            android:text="Information"
+            android:textSize="40dp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textStyle="bold"
+            android:fontFamily="@font/icel"
+            android:layout_gravity="center"
+            android:textAlignment="center" />
+    </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Name"
+                android:textSize="30dp"
+                android:layout_marginTop="-200dp"
+                android:textColor="@android:color/holo_orange_dark"/>
+            <TextView
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-150dp"
+                android:textColor="@android:color/holo_orange_dark"/>
+            <TextView
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-100dp"
+                android:textColor="@android:color/holo_orange_dark"/>
+            <TextView
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-50dp"
+                android:textColor="@android:color/holo_orange_dark"/>
+            <TextView
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="00dp"
+                android:textColor="@android:color/holo_orange_dark"/>
+
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nguyen van A"
+                android:textSize="30dp"
+                android:layout_marginTop="-200dp"
+                android:layout_marginStart="80dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"/>
+            <TextView
+                android:id="@+id/textViewAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nguyen van A"
+                android:textSize="30dp"
+                android:layout_marginTop="-150dp"
+                android:layout_marginStart="80dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"/>
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nguyen van A"
+                android:textSize="30dp"
+                android:layout_marginTop="-100dp"
+                android:layout_marginStart="80dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"/>
+            <TextView
+                android:id="@+id/textViewAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nguyen van A"
+                android:textSize="30dp"
+                android:layout_marginTop="-50dp"
+                android:layout_marginStart="80dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"/>
+            <TextView
+                android:id="@+id/textViewGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nguyen van A"
+                android:textSize="30dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="80dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"/>
+
+        </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btnChangePasswordAccount"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/button"
+            android:text="Change Pass word"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20dp"/>
+        <Button
+            android:id="@+id/btnLogoutAccount"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="140dp"
+            android:background="@drawable/button"
+            android:text="Log out"
+            android:textSize="20dp"
+            android:textColor="@android:color/background_dark"/>
+    </FrameLayout>
+
+
 </FrameLayout>
