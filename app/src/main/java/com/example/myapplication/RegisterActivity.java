@@ -24,7 +24,7 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
     Button buttonCancelRegister, buttonRegisterReal;
     EditText editTextAccountRegister, editTextUsernameRegister, editTextEmailRegister, editTextPasswordRegister, editTextAgeRegister, editTextSexRegister, editTextAddressRegister;
-    String urlInsertCustomer = "http://172.16.15.51/foodcourtdb/insertCustomer.php";
+    String urlInsertCustomer = "http://foodcourt2020.medianewsonline.com/insertCustomer.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")){
                             Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(RegisterActivity.this, AccountFragment.class);
-                            startActivity(intent);
+                            finish();
                         }
                         else{
                             Toast.makeText(RegisterActivity.this, "Register Fail", Toast.LENGTH_SHORT).show();
