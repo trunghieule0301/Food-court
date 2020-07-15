@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadFragment(new HomeFragment());
         /*
         Dang Nguyen connect DATA  =======================================================
         */
@@ -75,7 +76,18 @@ public class MainActivity extends AppCompatActivity {
         */
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+    }
 
+    private boolean loadFragment(Fragment fragment) {
+        //switching fragment
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
     }
 
 
@@ -266,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.container,  selectedFragment).commit();
-            return true;
+            return loadFragment(selectedFragment);
         }
     };
 }

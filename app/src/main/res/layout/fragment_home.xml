@@ -72,7 +72,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_id_in_home_frag"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="650dp" />
 
         </LinearLayout>
 
