@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.account;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
@@ -42,10 +43,16 @@ public class AccountFragment extends Fragment {
     TextView textViewNameAcocunt, textViewAccount, textViewEmailAccount, textViewAgeAccount, textViewGenderAccount;
     private String urlGetCusData = "http://foodcourt2020.medianewsonline.com/getCusData.php";
     private ArrayList<Customer> arrayListCustomer;
+    String AccountFromLogin;
+    public static String account = "null";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_account, container, false);
+//        if(getArguments() != null) {
+//            account = getArguments().getString("AccountCus");
+//        }
+
         return root;
     }
 
@@ -54,6 +61,10 @@ public class AccountFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Anhxa();
+
+        AccountFromLogin = getArguments().getString("AccountCus");
+        Toast.makeText(getActivity(), AccountFromLogin, Toast.LENGTH_SHORT).show();
+
         arrayListCustomer =  new ArrayList<>();
         GetCustomerData(urlGetCusData, arrayListCustomer);
         buttonChangePasswordAccount.setOnClickListener(new View.OnClickListener() {

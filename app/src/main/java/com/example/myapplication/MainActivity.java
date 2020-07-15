@@ -15,6 +15,7 @@ import com.example.myapplication.ui.foodstall.FoodstallFragment;
 import com.example.myapplication.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     /*
     ===============================================================================
     */
-
+    public static String UserAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
 //        GetOrderData(urlGetOrderData);
 //        GetDetailOrderData(urlGetDetailOrderData);
 //        GetCustomerData(urlGetCusData);
+//        Intent intent = getIntent();
+
+//        Bundle bundle = intent.getBundleExtra("Data");
+//        UserAccount = bundle.getString("AccountCus");
+
+//        Toast.makeText(this, UserAccount.toString(), Toast.LENGTH_SHORT).show();
+
         /*
         ===============================================================================
         */
@@ -79,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean loadFragment(Fragment fragment) {
+        Fragment fragment1 = new AccountFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("AccountCus", UserAccount);
+        fragment1.setArguments(bundle);
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()

@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.content.LocusId;
@@ -19,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.ui.account.AccountFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +34,7 @@ public class Login extends AppCompatActivity {
     Button buttonLogin, buttonRegister;
     EditText editTextAccount, editTextPassword;
     ArrayList<Customer> arrayListCustomer;
+    String userAccount;
     private String url = "http://foodcourt2020.medianewsonline.com/getCusData.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,12 @@ public class Login extends AppCompatActivity {
                     if (CheckAccount(editTextAccount.getText().toString(),editTextPassword.getText().toString())){
                         Toast.makeText(Login.this, "Login success", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, MainActivity.class);
+                        Bundle bundle = new Bundle();
+                        userAccount = editTextAccount.getText().toString();
+                        bundle.putString("AccountCus", userAccount);
+                        AccountFragment fragobj = new AccountFragment();
+                        fragobj.setArguments(bundle);
+//                        Toast.makeText(Login.this, editTextAccount.getText().toString(), Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                     }
                     else{
@@ -90,6 +101,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
     public boolean CheckAccount(String account, String password){
         for (int i = 0; i < arrayListCustomer.size(); i++){
             if (arrayListCustomer.get(i).getAccount().equals(account) && arrayListCustomer.get(i).getPassword().equals(password)) {
@@ -131,5 +143,8 @@ public class Login extends AppCompatActivity {
                     }
                 });
         requestQueue.add(jsonArrayRequest);
+    }
+    public String GetAccount(){
+        return  userAccount;
     }
 }
