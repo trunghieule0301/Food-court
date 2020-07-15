@@ -19,19 +19,22 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
+                android:layout_marginTop="0dp"
                 android:layout_width="match_parent"
-                android:layout_height="270dp">
+                android:background="@drawable/backgroundscrollview"
+                android:layout_height="280dp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/backgroundscroll"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    app:cardCornerRadius="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="-35dp"
+                    android:layout_marginBottom="35dp"
+                    app:cardCornerRadius="40dp"
                     app:cardElevation="5dp">
 
                     <com.denzcoskun.imageslider.ImageSlider

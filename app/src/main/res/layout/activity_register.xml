@@ -140,6 +140,9 @@
             android:background="@drawable/edit"/>
         <Button
             android:id="@+id/btnRegisterReal"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:elevation="8dp"
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -150,6 +153,9 @@
             />
         <Button
             android:id="@+id/btnCancelRegister"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:elevation="8dp"
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
