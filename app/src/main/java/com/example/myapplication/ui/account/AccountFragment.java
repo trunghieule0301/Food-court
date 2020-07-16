@@ -49,9 +49,10 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_account, container, false);
-//        if(getArguments() != null) {
-//            account = getArguments().getString("AccountCus");
-//        }
+
+        String args = getArguments().getString("account");
+
+        Toast.makeText(getActivity(), "test click: " + args, Toast.LENGTH_SHORT).show();
 
         return root;
     }

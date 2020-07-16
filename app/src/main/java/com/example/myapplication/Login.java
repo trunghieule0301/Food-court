@@ -76,12 +76,7 @@ public class Login extends AppCompatActivity {
                     if (CheckAccount(editTextAccount.getText().toString(),editTextPassword.getText().toString())){
                         Toast.makeText(Login.this, "Login success", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, MainActivity.class);
-                        Bundle bundle = new Bundle();
-                        userAccount = editTextAccount.getText().toString();
-                        bundle.putString("AccountCus", userAccount);
-                        AccountFragment fragobj = new AccountFragment();
-                        fragobj.setArguments(bundle);
-//                        Toast.makeText(Login.this, editTextAccount.getText().toString(), Toast.LENGTH_SHORT).show();
+                        intent.putExtra("putExtraToMain", editTextAccount.getText().toString());
                         startActivity(intent);
                     }
                     else{

@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     /*
     ===============================================================================
     */
-    public static String UserAccount;
+    public static  String dataCus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadFragment(new HomeFragment());
+
+        dataCus = getIntent().getStringExtra("putExtraToMain");
+
         /*
         Dang Nguyen connect DATA  =======================================================
         */
@@ -87,10 +90,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean loadFragment(Fragment fragment) {
-        Fragment fragment1 = new AccountFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("AccountCus", UserAccount);
-        fragment1.setArguments(bundle);
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()
@@ -101,6 +100,29 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            Fragment selectedFragment = null;
+            switch (menuItem.getItemId()){
+                case R.id.navigation_home:
+                    selectedFragment = new HomeFragment();
+                    break;
+                case R.id.navigation_foodstall:
+                    selectedFragment = new FoodstallFragment();
+                    break;
+                case R.id.navigation_account:
+                    selectedFragment = new AccountFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("account", dataCus);
+                    selectedFragment.setArguments(bundle);
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,  selectedFragment).commit();
+            return loadFragment(selectedFragment);
+        }
+    };
 
 
     /*
@@ -273,24 +295,4 @@ public class MainActivity extends AppCompatActivity {
     /*
     =====================================================================================================
     */
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            Fragment selectedFragment = null;
-            switch (menuItem.getItemId()){
-                case R.id.navigation_home:
-                    selectedFragment = new HomeFragment();
-                    break;
-                case R.id.navigation_foodstall:
-                    selectedFragment = new FoodstallFragment();
-                    break;
-                case R.id.navigation_account:
-                    selectedFragment = new AccountFragment();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,  selectedFragment).commit();
-            return loadFragment(selectedFragment);
-        }
-    };
 }
