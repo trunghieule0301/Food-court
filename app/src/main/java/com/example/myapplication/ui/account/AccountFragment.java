@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.account;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -45,14 +46,14 @@ public class AccountFragment extends Fragment {
     private ArrayList<Customer> arrayListCustomer;
     String AccountFromLogin;
     public static String account = "null";
+    String args;
+    private int index = -1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_account, container, false);
-
-        String args = getArguments().getString("account");
-
-        Toast.makeText(getActivity(), "test click: " + args, Toast.LENGTH_SHORT).show();
+        args = getArguments().getString("account");
+//        Toast.makeText(getActivity(), "test click: " + args, Toast.LENGTH_SHORT).show();
 
         return root;
     }
@@ -62,12 +63,27 @@ public class AccountFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Anhxa();
-
-        AccountFromLogin = getArguments().getString("AccountCus");
-        Toast.makeText(getActivity(), AccountFromLogin, Toast.LENGTH_SHORT).show();
-
         arrayListCustomer =  new ArrayList<>();
         GetCustomerData(urlGetCusData, arrayListCustomer);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0;i < arrayListCustomer.size(); i++){
+                    if (args.equals(arrayListCustomer.get(i).getAccount().trim())){
+                        index = i;
+                    }
+                }
+//                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                textViewAccount.setText(arrayListCustomer.get(index).getAccount());
+                textViewNameAcocunt.setText(arrayListCustomer.get(index).getName());
+                textViewEmailAccount.setText(arrayListCustomer.get(index).getEmail());
+                textViewGenderAccount.setText(arrayListCustomer.get(index).getSex());
+                textViewAgeAccount.setText(arrayListCustomer.get(index).getAge() + "");
+            }
+        }, 2000);
+
         buttonChangePasswordAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,5 +148,6 @@ public class AccountFragment extends Fragment {
                 });
         requestQueue.add(jsonArrayRequest);
     }
+
 
 }
