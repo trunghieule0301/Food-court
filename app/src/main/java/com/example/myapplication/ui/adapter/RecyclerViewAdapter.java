@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Login;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Meals;
 import com.example.myapplication.ui.foodstall.FoodFragment;
@@ -29,6 +31,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static List<Meals.Meal> meals;
     private FoodFragment context;
     private static ClickListener clickListener;
+    public static String nameOfFood;
+
 
     public RecyclerViewAdapter(FoodFragment context, List<Meals.Meal> meals) {
         this.meals = meals;
@@ -53,6 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Picasso.get().load(strMealThumb).placeholder(R.drawable.shadow_bottom_to_top).into(holder.mealThumb);
 
         String strMealName = meals.get(position).getStrMeal();
+        nameOfFood = meals.get(position).getStrMeal();
         holder.mealName.setText(strMealName);
 
     }
@@ -66,20 +71,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @BindView(R.id.food_icon)
         ImageView mealThumb;
+
         @BindView(R.id.name_of_food)
         TextView mealName;
+
+        @BindView(R.id.buttonAddToCart)
+        Button buttonAddToCart;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(this);
-
+            buttonAddToCart.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             clickListener.onClick(v, getAdapterPosition());
         }
+
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
@@ -90,6 +99,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public interface ClickListener {
         void onClick(View view, int position);
     }
-
 
 }

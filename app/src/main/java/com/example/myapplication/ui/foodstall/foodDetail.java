@@ -31,15 +31,6 @@ public class foodDetail extends AppCompatActivity implements FoodDetailView {
     @BindView(R.id.name_of_food_detail)
     TextView nameMeal;
 
-    @BindView(R.id.buttonMul)
-    Button buttonMul;
-
-    @BindView(R.id.buttonAdd)
-    Button buttonAdd;
-
-    @BindView(R.id.textResult)
-    TextView textResult;
-
     public static String NameOfMeal;
 
     @Override
@@ -62,8 +53,5 @@ public class foodDetail extends AppCompatActivity implements FoodDetailView {
         Picasso.get().load(meal.getStrMealThumb()).into(mealThumb);
         instructions.setText(meal.getStrInstructions());
         nameMeal.setText(NameOfMeal);
-        buttonAdd.setText("+");
-        buttonMul.setText("-");
-        textResult.setText("0");
     }
 }

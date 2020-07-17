@@ -1,6 +1,6 @@
 package com.example.myapplication;
 
-import android.graphics.drawable.Drawable;
+import com.example.myapplication.ui.foodstall.FoodFragment;
 
 public class ourData {
     public static int[] promotion = new int[]{
@@ -11,4 +11,9 @@ public class ourData {
             R.drawable.promotion5,
             R.drawable.promotion6
     };
+
+    public static Integer num = 20;
+
+    public static String[] data = new String[num];
+
 }

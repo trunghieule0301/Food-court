@@ -18,14 +18,12 @@
 
     <TextView
         android:textSize="40dp"
-        android:id="@+id/textView"
+        android:id="@+id/numberOfFood"
         android:fontFamily="@font/icel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="368dp"
         android:text="0" />
-
-
 
     <ScrollView
         android:layout_marginTop="70dp"
@@ -73,7 +71,7 @@
             android:layout_height="45dp"
             android:layout_marginTop="3dp"
             android:textAlignment="center"
-            android:background="@android:color/holo_orange_light"
+            android:background="@drawable/button"
             app:cornerRadius="18dp"
             android:textSize="30dp"
             android:fontFamily="@font/icel"

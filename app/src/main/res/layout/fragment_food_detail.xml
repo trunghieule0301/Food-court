@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frameFoodDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ui.foodstall.FoodDetailFragment">
+
+    <ScrollView
+        android:layout_marginBottom="65dp"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:weightSum="5.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/NameOfFoodDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:textSize="50dp"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_id_in_food_detail_frag"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/button_pay"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:elevation="8dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="190dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="3dp"
+                android:textAlignment="center"
+                android:background="@drawable/button"
+                app:cornerRadius="18dp"
+                android:textSize="30dp"
+                android:fontFamily="@font/icel"
+                android:text="Pay" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

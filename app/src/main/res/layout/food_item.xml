@@ -3,10 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
     android:id="@+id/cardview_id_1"
-    android:layout_width="170dp"
+    android:layout_width="175dp"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
     android:elevation="5dp"
@@ -25,6 +23,7 @@
             android:layout_height="150dp"
             android:src="@drawable/stall_09"
             android:layout_gravity="center_horizontal"/>
+
         <TextView
             android:id="@+id/name_of_food"
             android:layout_width="160dp"
@@ -35,6 +34,19 @@
             android:layout_gravity="center_horizontal"
             android:textColor="@android:color/black"/>
 
+        <Button
+            android:id="@+id/buttonAddToCart"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_gravity="center_horizontal"
+            android:text="add to cart"
+            android:background="@drawable/button"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:layout_alignParentBottom="true" />
 
     </LinearLayout>
 
