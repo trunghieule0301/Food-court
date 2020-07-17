@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,8 +25,6 @@ import butterknife.ButterKnife;
 
 public class FoodDetailRecyclerViewAdapter extends RecyclerView.Adapter<FoodDetailRecyclerViewAdapter.MyViewHolder> {
 
-    private static List<Meals.Meal> meals;
-    private FoodDetailFragment context;
     private static ClickListener clickListener;
 
     @NonNull
@@ -41,7 +40,8 @@ public class FoodDetailRecyclerViewAdapter extends RecyclerView.Adapter<FoodDeta
 
     @Override
     public void onBindViewHolder(@NonNull FoodDetailRecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.name_of_food_in_bill.setText(ourData.data[position]);
+        holder.name_of_food_in_bill.setText(ourData.food[position]);
+        holder.price.setText(ourData.price[position] + " VND");
     }
 
     @Override
@@ -49,21 +49,53 @@ public class FoodDetailRecyclerViewAdapter extends RecyclerView.Adapter<FoodDeta
         return FoodFragment.count1;
     }
 
+    public static int check;
+
     static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        public int sum = 1;
 
         @BindView(R.id.name_of_food_in_bill)
         TextView name_of_food_in_bill;
 
+        @BindView(R.id.price)
+        TextView price;
+
+        @BindView(R.id.buttonMul)
+        Button buttonMul;
+
+        @BindView(R.id.buttonAdd)
+        Button buttonAdd;
+
+        @BindView(R.id.sum_of_each_food)
+        TextView sum_of_each_food;
+
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            buttonAdd.setOnClickListener(this);
+            buttonMul.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            clickListener.onClick(v, getAdapterPosition());
+            switch (v.getId()){
+                case R.id.buttonAdd:
+                    sum++;
+                    sum_of_each_food.setText(String.valueOf(sum));
+                    check = 1;
+                    break;
+                case R.id.buttonMul:
+                    if(sum > 0) {
+                        sum--;
+                    }
+                    sum_of_each_food.setText(String.valueOf(sum));
+                    check = 0;
+                    break;
+            }
+//            Toast.makeText(v.getContext(), "test click " + String.valueOf(sum), Toast.LENGTH_SHORT).show();
+            clickListener.onClick(v, getAdapterPosition(), check);
         }
-
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
@@ -71,7 +103,6 @@ public class FoodDetailRecyclerViewAdapter extends RecyclerView.Adapter<FoodDeta
     }
 
     public interface ClickListener {
-        void onClick(View view, int position);
+        void onClick(View view, int position, int check);
     }
-
 }

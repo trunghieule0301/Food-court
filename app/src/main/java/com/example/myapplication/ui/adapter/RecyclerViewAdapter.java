@@ -60,6 +60,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         nameOfFood = meals.get(position).getStrMeal();
         holder.mealName.setText(strMealName);
 
+        String price = meals.get(position).getStrInstructions();
+        holder.price_of_food.setText(price + " VND");
+
     }
 
     @Override
@@ -74,6 +77,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @BindView(R.id.name_of_food)
         TextView mealName;
+
+        @BindView(R.id.price_of_food)
+        TextView price_of_food;
 
         @BindView(R.id.buttonAddToCart)
         Button buttonAddToCart;

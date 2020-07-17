@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.model.Meals;
 import com.example.myapplication.ui.adapter.FoodDetailRecyclerViewAdapter;
 import com.example.myapplication.ui.adapter.RecyclerViewAdapter;
+import com.example.myapplication.ourData;
 
 import java.util.List;
 
@@ -27,6 +29,11 @@ public class FoodDetailFragment extends Fragment {
 
     @BindView(R.id.recyclerview_id_in_food_detail_frag)
     RecyclerView recyclerView;
+
+    @BindView(R.id.totalPrice)
+    TextView totalPrice;
+
+    public static Integer sum;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container,
@@ -45,6 +52,20 @@ public class FoodDetailFragment extends Fragment {
         recyclerView.setClipToPadding(false);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-    }
 
+
+        sum = Integer.parseInt(ourData.tolPrice[0]);
+        totalPrice.setText(String.valueOf(sum));
+
+        adapter.setOnItemClickListener((v, position, check) -> {
+            int price = Integer.parseInt(ourData.price[position]);
+            if(check == 1){
+                sum = sum + price;
+            }
+            else if(check == 0) {
+                sum = sum - price;
+            }
+            totalPrice.setText(String.valueOf(sum));
+        });
+    }
 }

@@ -21,10 +21,12 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/NameOfFoodDetail"
+                android:id="@+id/cart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAlignment="center"
+                android:text="CART"
+                android:textColor="@android:color/holo_orange_dark"
                 android:textSize="50dp"
                 />
 
@@ -32,6 +34,13 @@
                 android:id="@+id/recyclerview_id_in_food_detail_frag"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/totalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="50dp"
+                android:textAlignment="textEnd" />
 
             <Button
                 android:id="@+id/button_pay"
@@ -41,7 +50,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="190dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="20dp"
                 android:textAlignment="center"
                 android:background="@drawable/button"
                 app:cornerRadius="18dp"

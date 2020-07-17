@@ -14,6 +14,10 @@ public class ourData {
 
     public static Integer num = 20;
 
-    public static String[] data = new String[num];
+    public static String[] food = new String[num];
+
+    public static String[] price = new String[num];
+
+    public static String[] tolPrice = new String[num];
 
 }

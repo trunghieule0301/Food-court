@@ -32,11 +32,13 @@ public class FoodFragment extends Fragment implements FoodView {
 
     public static String[] dataFood;
 
+    public static String[] dataPrice;
+
     public Integer count = 0;
 
     public static Integer count1 = 0;
 
-    public int sum = 0;
+    public Integer sum = 0;
 
     @BindView(R.id.numberOfFood)
     TextView numberOfFood;
@@ -51,6 +53,8 @@ public class FoodFragment extends Fragment implements FoodView {
     FoodPresenter presenter;
 
     public static Integer itemCount;
+
+    public static Integer sum1 = 0;
 
     Button btnPurchase;
 
@@ -67,9 +71,12 @@ public class FoodFragment extends Fragment implements FoodView {
             public void onClick(View v) {
                 ourData.num = count;
                 for(int i = 0; i < count; i++){
-                    ourData.data[i] = dataFood[i];
+                    ourData.food[i] = dataFood[i];
+                    ourData.price[i] = dataPrice[i];
+                    sum1 = sum1 + Integer.parseInt(dataPrice[i]);
                 }
-                Toast.makeText(v.getContext(), "test click " + String.valueOf(ourData.num), Toast.LENGTH_SHORT).show();
+                ourData.tolPrice[0] = Integer.toString(sum1);
+//                Toast.makeText(v.getContext(), "test click " + ourData.tolPrice[0], Toast.LENGTH_SHORT).show();
                 FragmentActivity activity = (FragmentActivity) v.getContext();
                 Fragment fragment = new FoodDetailFragment();
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
@@ -107,9 +114,11 @@ public class FoodFragment extends Fragment implements FoodView {
         itemCount = adapter.getItemCount();
         int[] checkArray = new int[itemCount];
         dataFood = new String[itemCount];
+        dataPrice = new String[itemCount];
 
         adapter.setOnItemClickListener((view, position) -> {
             String foodName = meals.get(position).getStrMeal();
+            String price = meals.get(position).getStrInstructions();
             while(count != itemCount){
                 for (int i = 0; i <= count; i++) {
                     if(position == 0){
@@ -123,14 +132,15 @@ public class FoodFragment extends Fragment implements FoodView {
 
                 if(check == false) {
                     dataFood[count] = foodName;
+                    dataPrice[count] = price;
                     sum = sum + 1;
                     checkArray[count] = position;
                     count++;
-                    count1++;
                 }
                 check = false;
                 break;
             }
+            count1 = count;
             numberOfFood.setText(String.valueOf(sum));
         });
     }
