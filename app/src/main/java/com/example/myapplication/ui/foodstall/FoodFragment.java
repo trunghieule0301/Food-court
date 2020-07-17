@@ -72,6 +72,7 @@ public class FoodFragment extends Fragment implements FoodView {
                 ourData.num = count;
                 for(int i = 0; i < count; i++){
                     ourData.food[i] = dataFood[i];
+                    ourData.ammount[i] = 1;
                     ourData.price[i] = dataPrice[i];
                     sum1 = sum1 + Integer.parseInt(dataPrice[i]);
                 }

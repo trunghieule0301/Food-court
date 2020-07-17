@@ -19,17 +19,23 @@
             android:weightSum="5.5"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF8800"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
             <TextView
                 android:id="@+id/cart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAlignment="center"
                 android:text="CART"
-                android:textColor="@android:color/holo_orange_dark"
-                android:textSize="50dp"
-                />
-
+                android:textColor="@android:color/white"
+                android:textSize="35dp"
+                android:fontFamily="@font/icel" />
+        </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_id_in_food_detail_frag"
                 android:layout_width="match_parent"
@@ -56,6 +62,7 @@
                 app:cornerRadius="18dp"
                 android:textSize="30dp"
                 android:fontFamily="@font/icel"
+                android:textColor="@color/colorWhite"
                 android:text="Pay" />
 
         </LinearLayout>

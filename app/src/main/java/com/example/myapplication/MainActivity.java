@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_foodstall:
                     selectedFragment = new FoodstallFragment();
+                    Bundle bundle1 = new Bundle();
                     break;
                 case R.id.navigation_account:
                     selectedFragment = new AccountFragment();

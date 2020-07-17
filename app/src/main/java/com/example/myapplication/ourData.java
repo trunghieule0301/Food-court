@@ -16,6 +16,8 @@ public class ourData {
 
     public static String[] food = new String[num];
 
+    public static int[] ammount = new int[num];
+
     public static String[] price = new String[num];
 
     public static String[] tolPrice = new String[num];

@@ -14,10 +14,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.ui.account.AccountFragment;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +31,9 @@ public class RegisterActivity extends AppCompatActivity {
     Button buttonCancelRegister, buttonRegisterReal;
     EditText editTextAccountRegister, editTextUsernameRegister, editTextEmailRegister, editTextPasswordRegister, editTextAgeRegister, editTextSexRegister, editTextAddressRegister;
     String urlInsertCustomer = "http://foodcourt2020.medianewsonline.com/insertCustomer.php";
+    String urlGetCusData = "http://foodcourt2020.medianewsonline.com/getCusData.php";
+    ArrayList<Customer> arrayListCus = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +49,10 @@ public class RegisterActivity extends AppCompatActivity {
         editTextAgeRegister = (EditText) findViewById(R.id.edtAgeRegister);
         editTextSexRegister = (EditText) findViewById(R.id.edtSexRegister);
         editTextAddressRegister = (EditText) findViewById(R.id.edtAddressRegister);
+
+        // Load du lieu nguoi dung
+
+        GetCustomerData(urlGetCusData, arrayListCus);
 
         // proccess button
 
@@ -58,7 +71,18 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else{
 //                    Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
-                    AddCustomer(urlInsertCustomer);
+                    boolean check = false;
+                    for (int i = 0; i < arrayListCus.size(); i++){
+                        if (editTextAccountRegister.getText().toString().equals(arrayListCus.get(i).getAccount())){
+                            check = true;
+                        }
+                    }
+                    if (check){
+                        Toast.makeText(RegisterActivity.this, "This account has already exist", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        AddCustomer(urlInsertCustomer);
+                    }
                 }
             }
         });
@@ -107,5 +131,38 @@ public class RegisterActivity extends AppCompatActivity {
         };
         requestQueue.add(stringRequest);
     }
+    public void GetCustomerData(String url, ArrayList<Customer> arrayListCustomer){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Toast.makeText(RegisterActivity.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
+                        for (int i = 0;i < response.length(); i++){
+                            try {
+                                JSONObject object = response.getJSONObject(i);
+                                arrayListCustomer.add(new Customer(
+                                        object.getInt("ID"),
+                                        object.getString("Account"),
+                                        object.getString("Name"),
+                                        object.getString("Email"),
+                                        object.getString("PassWord"),
+                                        object.getInt("Age"),
+                                        object.getString("Sex"),
+                                        object.getString("Address")));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(RegisterActivity.this, "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
 
+                    }
+                });
+        requestQueue.add(jsonArrayRequest);
+    }
 }

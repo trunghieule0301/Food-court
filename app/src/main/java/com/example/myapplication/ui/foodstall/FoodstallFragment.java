@@ -25,7 +25,6 @@ public class FoodstallFragment extends Fragment implements FoodstallView {
     public static final String EXTRA_CATEGORY = "category";
     public static final String EXTRA_POSITION = "position";
     public static final String EXTRA_DETAIL = "detail";
-
     private List<Categories.Category> categories;
 
     @BindView(R.id.recyclerview_id_in_foodstall_frag)
@@ -37,7 +36,6 @@ public class FoodstallFragment extends Fragment implements FoodstallView {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_foodstall, container, false);
         ButterKnife.bind(this, root);
-
         return root;
     }
 
