@@ -35,14 +35,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Food stall"
-                android:textColor="@android:color/holo_orange_dark"
-                android:fontFamily="@font/icel"
-                android:textAlignment="center"
-                android:textSize="50dp"/>
+                android:background="#FF8800"
+                android:orientation="vertical"
+                android:paddingTop="0dp"
+                android:paddingBottom="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:gravity="center"
+                    android:text="Food Stall"
+                    android:textColor="@android:color/white"
+                    android:textSize="35dp"
+                    android:fontFamily="@font/icel"
+                    />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_id_in_foodstall_frag"

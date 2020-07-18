@@ -125,6 +125,12 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+    }
 
     /*
     Dang Nguyen connect DATA =====================================================================

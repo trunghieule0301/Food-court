@@ -28,6 +28,7 @@ import com.example.myapplication.Customer;
 import com.example.myapplication.Food;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.Order;
+import com.example.myapplication.PaySuccessActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Meals;
 import com.example.myapplication.ui.adapter.FoodDetailRecyclerViewAdapter;
@@ -152,8 +153,10 @@ public class FoodDetailFragment extends Fragment {
                     // find total price for this food
                     String total = (arrayListFood.get(ind).getPrice() * (float)ourData.ammount[i]) + "";
                     AddDetailOrder(urlAddDetailOrder, idorder, idfood, number, total);
+                    Intent intent = new Intent(getActivity(), PaySuccessActivity.class);
+                    startActivity(intent);
                 }
-                
+
             }
         });
     }

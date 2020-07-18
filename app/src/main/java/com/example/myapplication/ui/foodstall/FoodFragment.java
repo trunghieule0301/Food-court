@@ -69,22 +69,27 @@ public class FoodFragment extends Fragment implements FoodView {
         {
             @Override
             public void onClick(View v) {
-                ourData.num = count;
-                for(int i = 0; i < count; i++){
-                    ourData.food[i] = dataFood[i];
-                    ourData.ammount[i] = 1;
-                    ourData.price[i] = dataPrice[i];
-                    sum1 = sum1 + Integer.parseInt(dataPrice[i]);
+                if (count == 0){
+                    Toast.makeText(getActivity(), "Cart is empty", Toast.LENGTH_SHORT).show();
                 }
-                ourData.tolPrice[0] = Integer.toString(sum1);
+                else {
+                    ourData.num = count;
+                    for (int i = 0; i < count; i++) {
+                        ourData.food[i] = dataFood[i];
+                        ourData.ammount[i] = 1;
+                        ourData.price[i] = dataPrice[i];
+                        sum1 = sum1 + Integer.parseInt(dataPrice[i]);
+                    }
+                    ourData.tolPrice[0] = Integer.toString(sum1);
 //                Toast.makeText(v.getContext(), "test click " + ourData.tolPrice[0], Toast.LENGTH_SHORT).show();
-                FragmentActivity activity = (FragmentActivity) v.getContext();
-                Fragment fragment = new FoodDetailFragment();
-                FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frameFood, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                    FragmentActivity activity = (FragmentActivity) v.getContext();
+                    Fragment fragment = new FoodDetailFragment();
+                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frameFood, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
             }
         });
         return root;

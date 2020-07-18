@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:background="#FF8800"
             android:orientation="vertical"
-            android:paddingTop="10dp"
+            android:paddingTop="0dp"
             android:paddingBottom="10dp">
             <TextView
                 android:layout_width="match_parent"
@@ -310,6 +310,7 @@
 
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardviewTrackOrder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -338,7 +339,7 @@
                             android:background="@drawable/icon_backgounr"
                             android:contentDescription=""
                             android:padding="10dp"
-                            android:src="@drawable/ic_age"
+                            android:src="@drawable/ic_cart"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -348,7 +349,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="80dp"
-                            android:text="Gender"
+                            android:text="Track your orders"
                             android:textColor="@color/colorWhite"
                             android:textSize="20sp"
                             android:textStyle="bold"
@@ -363,7 +364,7 @@
                             android:layout_marginBottom="12dp"
                             android:ellipsize="end"
                             android:maxLines="2"
-                            android:text="Waiting..."
+                            android:text="Manage your order"
                             android:textSize="18sp"
                             android:textColor="@color/colorLightText"
                             app:layout_constraintBottom_toBottomOf="parent"

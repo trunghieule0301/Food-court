@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 
@@ -23,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.ChangePasswordActivity;
 import com.example.myapplication.Customer;
 import com.example.myapplication.Login;
 import com.example.myapplication.MainActivity;
@@ -42,11 +44,12 @@ public class AccountFragment extends Fragment {
 
     Button buttonChangePasswordAccount, buttonLogoutAccount;
     TextView textViewNameAcocunt, textViewAccount, textViewEmailAccount, textViewAgeAccount, textViewGenderAccount;
+    CardView cardViewTrackOrder;
     private String urlGetCusData = "http://foodcourt2020.medianewsonline.com/getCusData.php";
     private ArrayList<Customer> arrayListCustomer;
     String AccountFromLogin;
     public static String account = "null";
-    String args;
+    String args ="";
     private int index = -1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -65,29 +68,33 @@ public class AccountFragment extends Fragment {
         Anhxa();
         arrayListCustomer =  new ArrayList<>();
         GetCustomerData(urlGetCusData, arrayListCustomer);
+        
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0;i < arrayListCustomer.size(); i++){
-                    if (args.equals(arrayListCustomer.get(i).getAccount().trim())){
-                        index = i;
+                if (!args.equals("")) {
+                    for (int i = 0; i < arrayListCustomer.size(); i++) {
+                        if (args.equals(arrayListCustomer.get(i).getAccount().toString().trim())) {
+                            index = i;
+                        }
                     }
-                }
 //                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
-                textViewAccount.setText(arrayListCustomer.get(index).getAccount());
-                textViewNameAcocunt.setText(arrayListCustomer.get(index).getName());
-                textViewEmailAccount.setText(arrayListCustomer.get(index).getEmail());
-                textViewGenderAccount.setText(arrayListCustomer.get(index).getSex());
-                textViewAgeAccount.setText(arrayListCustomer.get(index).getAge() + "");
+                    textViewAccount.setText(arrayListCustomer.get(index).getAccount());
+                    textViewNameAcocunt.setText(arrayListCustomer.get(index).getName());
+                    textViewEmailAccount.setText(arrayListCustomer.get(index).getEmail());
+                    textViewAgeAccount.setText(arrayListCustomer.get(index).getAge() + "");
+                }
             }
-        }, 2000);
+        }, 5000);
 
         buttonChangePasswordAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
+                intent.putExtra("index_cus", index);
+                startActivity(intent);
             }
         });
         buttonLogoutAccount.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +102,14 @@ public class AccountFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Login.class);
                 startActivity(intent);
+            }
+        });
+
+        cardViewTrackOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Track Order
+                Toast.makeText(getActivity(), "Feature is in progress", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -113,6 +128,7 @@ public class AccountFragment extends Fragment {
         textViewEmailAccount = (TextView) getView().findViewById(R.id.textViewEmail);
         textViewAgeAccount = (TextView) getView().findViewById(R.id.textViewAge);
         textViewGenderAccount = (TextView) getView().findViewById(R.id.textViewGender);
+        cardViewTrackOrder = (CardView) getView().findViewById(R.id.cardviewTrackOrder);
     }
 
     public void GetCustomerData(String url, ArrayList<Customer> arrayListCustomer){

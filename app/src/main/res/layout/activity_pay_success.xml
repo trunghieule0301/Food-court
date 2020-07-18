@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaySuccessActivity"
+    android:background="@color/colorWhite">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="-110dp"
+            android:text="Pay successful"
+            android:textSize="40dp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textStyle="bold"
+            android:fontFamily="@font/icel"
+            android:layout_gravity="center"
+            android:textAlignment="center" />
+
+
+        <Button
+            android:id="@+id/btnTurnHome"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:elevation="8dp"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:text="Back to Home"
+            android:layout_marginTop="-30dp"
+            android:background="@drawable/button"
+            android:textColor="@color/colorWhite"/>
+        <Button
+            android:id="@+id/btnTrackOrder"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:elevation="8dp"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:text="Track your orders"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button"
+            android:textColor="@color/colorWhite"/>
+
+    </FrameLayout>
+</FrameLayout>
