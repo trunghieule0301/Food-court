@@ -88,6 +88,8 @@ public class FoodDetailFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+        Toast.makeText(view.getContext(), "account " + ourData.account[0], Toast.LENGTH_SHORT).show();
+
         GetCustomerData(urlGetCusData,arrayListCus);
         GetFoodData(urlGetFoodData,arrayListFood);
         GetOrderData(urlGetOrderData);

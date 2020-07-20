@@ -22,4 +22,6 @@ public class ourData {
 
     public static String[] tolPrice = new String[num];
 
+    public static String[] account = new String[2];
+
 }

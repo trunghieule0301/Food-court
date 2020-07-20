@@ -11,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.ui.account.AccountFragment;
+import com.example.myapplication.ui.foodstall.FoodDetailFragment;
 import com.example.myapplication.ui.foodstall.FoodstallFragment;
 import com.example.myapplication.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new HomeFragment());
 
         dataCus = getIntent().getStringExtra("putExtraToMain");
+
+        ourData.account[0] = dataCus;
 
         /*
         Dang Nguyen connect DATA  =======================================================
@@ -111,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_foodstall:
                     selectedFragment = new FoodstallFragment();
-                    Bundle bundle1 = new Bundle();
                     break;
                 case R.id.navigation_account:
                     selectedFragment = new AccountFragment();
