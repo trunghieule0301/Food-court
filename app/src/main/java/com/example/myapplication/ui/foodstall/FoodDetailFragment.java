@@ -98,18 +98,21 @@ public class FoodDetailFragment extends Fragment {
         sum = Integer.parseInt(ourData.tolPrice[0]);
         totalPrice.setText(String.valueOf(sum));
 
-        adapter.setOnItemClickListener((v, position, check) -> {
+        adapter.setOnItemClickListener((v, position, check, SUM) -> {
             int price = Integer.parseInt(ourData.price[position]);
             if(check == 1){
                 ourData.ammount[position]++;
                 sum = sum + price;
             }
             else if(check == 0) {
+
                 if (ourData.ammount[position] > 0){
                     ourData.ammount[position]--;
                 }
-                sum = sum - price;
-                if (sum < 0) sum = 0;
+                Toast.makeText(getActivity(), SUM +"", Toast.LENGTH_SHORT).show();
+                if (SUM >= 0) {
+                    sum = sum - price;
+                }
             }
             totalPrice.setText(String.valueOf(sum));
         });

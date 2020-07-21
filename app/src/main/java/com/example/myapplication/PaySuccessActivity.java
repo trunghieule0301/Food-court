@@ -26,7 +26,6 @@ public class PaySuccessActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         buttonTrackOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

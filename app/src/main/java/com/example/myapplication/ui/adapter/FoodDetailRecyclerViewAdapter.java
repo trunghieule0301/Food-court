@@ -51,9 +51,13 @@ public class FoodDetailRecyclerViewAdapter extends RecyclerView.Adapter<FoodDeta
 
     public static int check;
 
+    public static int SUM;
+
     static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public int sum = 1;
+
+        public int sub_sum = 1;
 
         @BindView(R.id.name_of_food_in_bill)
         TextView name_of_food_in_bill;
@@ -82,6 +86,11 @@ public class FoodDetailRecyclerViewAdapter extends RecyclerView.Adapter<FoodDeta
             switch (v.getId()){
                 case R.id.buttonAdd:
                     sum++;
+                    if (sub_sum < 0){
+                        sub_sum = 1;
+                    }else {
+                        sub_sum++;
+                    }
                     sum_of_each_food.setText(String.valueOf(sum));
                     check = 1;
                     break;
@@ -89,12 +98,14 @@ public class FoodDetailRecyclerViewAdapter extends RecyclerView.Adapter<FoodDeta
                     if(sum > 0) {
                         sum--;
                     }
+                    sub_sum--;
                     sum_of_each_food.setText(String.valueOf(sum));
                     check = 0;
                     break;
             }
+            SUM = sub_sum;
 //            Toast.makeText(v.getContext(), "test click " + String.valueOf(sum), Toast.LENGTH_SHORT).show();
-            clickListener.onClick(v, getAdapterPosition(), check);
+            clickListener.onClick(v, getAdapterPosition(), check, SUM);
         }
     }
 
@@ -103,6 +114,6 @@ public class FoodDetailRecyclerViewAdapter extends RecyclerView.Adapter<FoodDeta
     }
 
     public interface ClickListener {
-        void onClick(View view, int position, int check);
+        void onClick(View view, int position, int check, int sum);
     }
 }
