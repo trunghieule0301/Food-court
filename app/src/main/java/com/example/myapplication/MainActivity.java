@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         /*
         Dang Nguyen connect DATA  =======================================================
         */
+
         arrayStall = new ArrayList<>();
         arrayFood  = new ArrayList<>();
         arrayOrder = new ArrayList<>();

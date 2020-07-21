@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.foodstall;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,13 +27,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Customer;
 import com.example.myapplication.Food;
-import com.example.myapplication.MainActivity;
 import com.example.myapplication.Order;
-import com.example.myapplication.PaySuccessActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.model.Meals;
 import com.example.myapplication.ui.adapter.FoodDetailRecyclerViewAdapter;
-import com.example.myapplication.ui.adapter.RecyclerViewAdapter;
 import com.example.myapplication.ourData;
 
 import org.json.JSONArray;
@@ -41,7 +38,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -175,8 +171,13 @@ public class FoodDetailFragment extends Fragment {
                     String total = (arrayListFood.get(ind).getPrice() * (float)ourData.ammount[i]) + "";
                     AddDetailOrder(urlAddDetailOrder, idorder, idfood, number, total);
                 }
-                Intent intent = new Intent(getActivity(), PaySuccessActivity.class);
-                startActivity(intent);
+                FragmentActivity activity = (FragmentActivity) view.getContext();
+                Fragment fragment = new PaySuccessFragment();
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameFoodDetail, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
     }

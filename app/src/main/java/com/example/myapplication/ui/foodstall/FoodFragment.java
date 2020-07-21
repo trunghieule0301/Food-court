@@ -50,6 +50,7 @@ public class FoodFragment extends Fragment implements FoodView {
     TextView NameOfFoodStall;
 
     public static String Name_of_foodstall;
+
     FoodPresenter presenter;
 
     public static Integer itemCount;
@@ -146,6 +147,7 @@ public class FoodFragment extends Fragment implements FoodView {
                 check = false;
                 break;
             }
+
             count1 = count;
             numberOfFood.setText(String.valueOf(sum));
         });

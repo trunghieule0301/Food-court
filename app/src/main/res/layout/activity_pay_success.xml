@@ -5,7 +5,7 @@
     android:id="@+id/paySuccess"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PaySuccessActivity"
+    tools:context=".ui.foodstall.PaySuccessFragment"
     android:background="@color/colorWhite">
     <FrameLayout
         android:layout_width="match_parent"
