@@ -16,7 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-
+import com.example.myapplication.ourData;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -55,8 +55,8 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_account, container, false);
-        args = getArguments().getString("account");
-//        Toast.makeText(getActivity(), "test click: " + args, Toast.LENGTH_SHORT).show();
+        args = ourData.account[0];
+        Toast.makeText(getActivity(), "test click: " + args, Toast.LENGTH_SHORT).show();
 
         return root;
     }
@@ -85,9 +85,10 @@ public class AccountFragment extends Fragment {
                     textViewNameAcocunt.setText(arrayListCustomer.get(index).getName());
                     textViewEmailAccount.setText(arrayListCustomer.get(index).getEmail());
                     textViewAgeAccount.setText(arrayListCustomer.get(index).getAge() + "");
+
                 }
             }
-        }, 5000);
+        }, 1000);
 
         buttonChangePasswordAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +119,7 @@ public class AccountFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        args = ourData.account[0];
     }
 
     private void Anhxa(){

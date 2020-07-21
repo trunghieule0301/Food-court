@@ -54,6 +54,7 @@ public class FoodDetailFragment extends Fragment {
     String urlGetFoodData = "http://foodcourt2020.medianewsonline.com/getFoodData.php";
     String urlAddDetailOrder = "http://foodcourt2020.medianewsonline.com/insertDetailOrder.php";
     String urlGetOrderData = "http://foodcourt2020.medianewsonline.com/getOrderData.php";
+    String urlUpdateMoney = "http://foodcourt2020.medianewsonline.com/updateCustomerMoney.php";
     ArrayList<Food> arrayListFood = new ArrayList<>();
     ArrayList<Customer> arrayListCus = new ArrayList<>();
     ArrayList<Order> arrayOrder = new ArrayList<>();
@@ -88,7 +89,7 @@ public class FoodDetailFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        Toast.makeText(view.getContext(), "account " + ourData.account[0], Toast.LENGTH_SHORT).show();
+//        Toast.makeText(view.getContext(), "account " + ourData.account[0], Toast.LENGTH_SHORT).show();
 
         GetCustomerData(urlGetCusData,arrayListCus);
         GetFoodData(urlGetFoodData,arrayListFood);
@@ -126,19 +127,34 @@ public class FoodDetailFragment extends Fragment {
                 }
 
                 // find id account
-
+                String idcustomeerorder = "";
+                float totalmoneyofcus = 0;
+                for (int i = 0;i < arrayListCus.size();i++){
+                    if (arrayListCus.get(i).getAccount().equals(ourData.account[0])){
+                        idcustomeerorder = arrayListCus.get(i).getID() + "";
+                        totalmoneyofcus = arrayListCus.get(i).getMoney() + 0;
+                        break;
+                    }
+                }
                 // find total of total
                 int totaloftotal = 0;
                 for (int i = 0; i < ourData.num; i++){
                     totaloftotal += ourData.ammount[i];
                 }
                 // Add order to db
-                AddOrdertoDb(urlAddOrder, id_of_stall, user_account, totalPrice.getText().toString(), totaloftotal + "");
+                AddOrdertoDb(urlAddOrder, id_of_stall, idcustomeerorder, totalPrice.getText().toString(), totaloftotal + "");
+
+                // update total money of customer
+                int cai_nay_la_chuyen_tu_string_sang_int = Integer.parseInt(totalPrice.getText().toString());
+                String nay_la_tong_so_tien_moi_ma_khach_da_mua = (totalmoneyofcus + (float) cai_nay_la_chuyen_tu_string_sang_int) + "";
+                Toast.makeText(getActivity(), nay_la_tong_so_tien_moi_ma_khach_da_mua, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), idcustomeerorder, Toast.LENGTH_SHORT).show();
+                UpdateLastPay(urlUpdateMoney, idcustomeerorder, nay_la_tong_so_tien_moi_ma_khach_da_mua);
 
                 // Add order detail to db
                 for (int i = 0;i < ourData.num; i++){
                     // find IDorder
-                    String idorder = arrayOrder.get(arrayOrder.size()-1).getID();
+                    String idorder = arrayOrder.get(arrayOrder.size()-1).getID() + "";
                     int idorderint = Integer.parseInt(idorder)  + 1;
                     idorder = idorderint + "";
                     //find IDfood
@@ -155,12 +171,42 @@ public class FoodDetailFragment extends Fragment {
                     // find total price for this food
                     String total = (arrayListFood.get(ind).getPrice() * (float)ourData.ammount[i]) + "";
                     AddDetailOrder(urlAddDetailOrder, idorder, idfood, number, total);
-                    Intent intent = new Intent(getActivity(), PaySuccessActivity.class);
-                    startActivity(intent);
                 }
-
+                Intent intent = new Intent(getActivity(), PaySuccessActivity.class);
+                startActivity(intent);
             }
         });
+    }
+
+    public void UpdateLastPay(String url, String idcustomer, String money){
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.trim().equals("Success")){
+                            Toast.makeText(getActivity(), "Update money success", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(getActivity(), "Update money fail", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "Conneect fail", Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("IDcustomer", idcustomer);
+                params.put("Money", money);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
     public void AddOrdertoDb(String url, String idstall, String idcus, String totalprice, String total){
@@ -248,6 +294,7 @@ public class FoodDetailFragment extends Fragment {
                                         object.getInt("Age"),
                                         object.getString("Sex"),
                                         object.getString("Address")));
+                                arrayListCustomer.get(arrayListCustomer.size()-1).setMoney(object.getInt("Money"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

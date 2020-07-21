@@ -9,6 +9,7 @@ public class Customer {
     private int Age;
     private String Sex;
     private String Address;
+    private float Money;
 
     public Customer(int ID, String account, String name, String email, String password, int age, String sex, String address) {
         this.ID = ID;
@@ -83,5 +84,13 @@ public class Customer {
 
     public void setAddress(String address) {
         Address = address;
+    }
+
+    public float getMoney() {
+        return Money;
+    }
+
+    public void setMoney(float money) {
+        Money = money;
     }
 }
