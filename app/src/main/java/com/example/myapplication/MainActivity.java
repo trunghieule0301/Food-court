@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     /*
     ===============================================================================
     */
-    public static  String dataCus;
+    public static String dataCus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
         dataCus = getIntent().getStringExtra("putExtraToMain");
 
-        ourData.account[0] = dataCus;
+        if(dataCus != null) {
+            ourData.account[0] = dataCus;
+        }
 
         /*
         Dang Nguyen connect DATA  =======================================================

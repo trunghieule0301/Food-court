@@ -47,9 +47,7 @@ public class AccountFragment extends Fragment {
     CardView cardViewTrackOrder;
     private String urlGetCusData = "http://foodcourt2020.medianewsonline.com/getCusData.php";
     private ArrayList<Customer> arrayListCustomer;
-    String AccountFromLogin;
-    public static String account = "null";
-    String args ="";
+    public static String args;
     private int index = -1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,14 +55,13 @@ public class AccountFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_account, container, false);
         args = ourData.account[0];
         Toast.makeText(getActivity(), "test click: " + args, Toast.LENGTH_SHORT).show();
-
         return root;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-
+        args = ourData.account[0];
         Anhxa();
         arrayListCustomer =  new ArrayList<>();
         GetCustomerData(urlGetCusData, arrayListCustomer);
