@@ -78,6 +78,8 @@
             android:layout_gravity="center"
             android:text="Login"
             android:layout_marginTop="50dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
             android:background="@drawable/button"
             />
         <Button
@@ -91,6 +93,8 @@
             android:text="Register"
             android:layout_marginTop="100dp"
             android:background="@drawable/button"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
             />
     </FrameLayout>
 </FrameLayout>

@@ -16,6 +16,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.myapplication.Order;
 import com.example.myapplication.ourData;
 
 import com.android.volley.Request;
@@ -30,6 +35,8 @@ import com.example.myapplication.Login;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.RegisterActivity;
+import com.example.myapplication.ui.foodstall.FoodDetailFragment;
+import com.example.myapplication.ui.trackOrder.TrackOrderFragment;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import org.json.JSONArray;
@@ -46,9 +53,12 @@ public class AccountFragment extends Fragment {
     TextView textViewNameAcocunt, textViewAccount, textViewEmailAccount, textViewAgeAccount, textViewGenderAccount;
     CardView cardViewTrackOrder;
     private String urlGetCusData = "http://foodcourt2020.medianewsonline.com/getCusData.php";
+    public String urlGetOrderData = "http://foodcourt2020.medianewsonline.com/getOrderData.php";
+
     private ArrayList<Customer> arrayListCustomer;
     public static String args;
     private int index = -1;
+    private String IDcustomerne = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -65,7 +75,7 @@ public class AccountFragment extends Fragment {
         Anhxa();
         arrayListCustomer =  new ArrayList<>();
         GetCustomerData(urlGetCusData, arrayListCustomer);
-        
+        GetOrderData(urlGetOrderData, ourData.orderArrayList);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -75,6 +85,7 @@ public class AccountFragment extends Fragment {
                     for (int i = 0; i < arrayListCustomer.size(); i++) {
                         if (args.equals(arrayListCustomer.get(i).getAccount().toString().trim())) {
                             index = i;
+
                         }
                     }
 //                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
@@ -82,10 +93,37 @@ public class AccountFragment extends Fragment {
                     textViewNameAcocunt.setText(arrayListCustomer.get(index).getName());
                     textViewEmailAccount.setText(arrayListCustomer.get(index).getEmail());
                     textViewAgeAccount.setText(arrayListCustomer.get(index).getAge() + "");
-
+                    IDcustomerne = arrayListCustomer.get(index).getID() + "";
                 }
             }
         }, 1000);
+
+        Handler handler1 = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < ourData.orderArrayList.size(); i++){
+                    if (String.valueOf(ourData.orderArrayList.get(i).getIDcustomer()).equals(String.valueOf(IDcustomerne))){
+                        boolean check_trung_nhau = false;
+                        for (int j = 0; j < ourData.arrayListOrderOfCustomer.size(); j ++){
+                            if (ourData.arrayListOrderOfCustomer.get(j).getID().equals(ourData.orderArrayList.get(i).getID())){
+                                check_trung_nhau = true;
+                                break;
+                            }
+                        }
+                        if (check_trung_nhau){
+                            continue;
+                        }
+                        else {
+                            ourData.arrayListOrderOfCustomer.add(ourData.orderArrayList.get(i));
+                        }
+                    }
+                    else {
+//                            Toast.makeText(getActivity(), "Khog giong dau a " + ourData.orderArrayList.get(i).getIDcustomer() + " " + ourData.id[0], Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, 3000);
 
         buttonChangePasswordAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +146,13 @@ public class AccountFragment extends Fragment {
             public void onClick(View view) {
                 // Track Order
                 Toast.makeText(getActivity(), "Feature is in progress", Toast.LENGTH_SHORT).show();
+                FragmentActivity activity = (FragmentActivity) view.getContext();
+                Fragment fragment = new TrackOrderFragment();
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameAccount, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 
@@ -159,6 +204,39 @@ public class AccountFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getActivity(), "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequest);
+    }
+    public void GetOrderData(String url, ArrayList<Order> arrayOrder){
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Toast.makeText(getActivity(), "Get Order data success", Toast.LENGTH_SHORT).show();
+                        for (int i = 0; i < response.length(); i++){
+                            try {
+                                JSONObject object = response.getJSONObject(i);
+                                arrayOrder.add(new Order(
+                                        object.getString("ID"),
+                                        object.getString("IDstall"),
+                                        object.getInt("IDcustomer"),
+                                        (float) object.getDouble("TotalPrice"),
+                                        object.getInt("Total"),
+                                        object.getString("Status"),
+                                        object.getString("Date")
+                                ));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         requestQueue.add(jsonArrayRequest);

@@ -65,7 +65,26 @@ public class TrackOrderFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String urlGetOrderData = "http://foodcourt2020.medianewsonline.com/getOrderData.php";
 
-        GetOrderData(urlGetOrderData, ourData.orderArrayList);
+//        GetOrderData(urlGetOrderData, ourData.orderArrayList);
+
+        TrackOrderRecyclerViewAdapter adapter =
+                new TrackOrderRecyclerViewAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setClipToPadding(false);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        adapter.setOnItemClickListener((v, position) -> {
+
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        String urlGetOrderData = "http://foodcourt2020.medianewsonline.com/getOrderData.php";
+
+//        GetOrderData(urlGetOrderData, ourData.orderArrayList);
 
         TrackOrderRecyclerViewAdapter adapter =
                 new TrackOrderRecyclerViewAdapter();

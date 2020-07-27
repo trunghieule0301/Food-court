@@ -15,9 +15,11 @@ import com.example.myapplication.ui.foodstall.FoodDetailFragment;
 import com.example.myapplication.ui.foodstall.FoodstallFragment;
 import com.example.myapplication.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.myapplication.ourData;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        GetStallData(urlGetStallData);
 //        GetFoodData(urlGetFoodData);
-//        GetOrderData(urlGetOrderData);
+//        GetOrderData(urlGetOrderData, ourData.orderArrayList);
 //        GetDetailOrderData(urlGetDetailOrderData);
 //        GetCustomerData(urlGetCusData);
 //        Intent intent = getIntent();
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 //        UserAccount = bundle.getString("AccountCus");
 
 //        Toast.makeText(this, UserAccount.toString(), Toast.LENGTH_SHORT).show();
+
 
         /*
         ===============================================================================
@@ -120,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_foodstall:
                     selectedFragment = new FoodstallFragment();
+                    ourData.tolPrice[0] = "0";
                     break;
                 case R.id.navigation_account:
                     selectedFragment = new AccountFragment();
@@ -207,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
-    public void GetOrderData(String url){
+    public void GetOrderData(String url, ArrayList<Order> arrayOrder){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {

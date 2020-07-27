@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.foodstall;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +90,7 @@ public class FoodDetailFragment extends Fragment {
 
         GetCustomerData(urlGetCusData,arrayListCus);
         GetFoodData(urlGetFoodData,arrayListFood);
-        GetOrderData(urlGetOrderData);
+        GetOrderData(urlGetOrderData, arrayOrder);
 
         sum = Integer.parseInt(ourData.tolPrice[0]);
         totalPrice.setText(String.valueOf(sum));
@@ -150,6 +151,9 @@ public class FoodDetailFragment extends Fragment {
                 Toast.makeText(getActivity(), idcustomeerorder, Toast.LENGTH_SHORT).show();
                 UpdateLastPay(urlUpdateMoney, idcustomeerorder, nay_la_tong_so_tien_moi_ma_khach_da_mua);
 
+                //
+                ourData.id[0] = idcustomeerorder;
+                GetOrderData(urlGetOrderData, ourData.orderArrayList);
                 // Add order detail to db
                 for (int i = 0;i < ourData.num; i++){
                     // find IDorder
@@ -245,6 +249,8 @@ public class FoodDetailFragment extends Fragment {
         };
         requestQueue.add(stringRequest);
     }
+
+
 
     public void AddDetailOrder(String url, String idorder, String idfood, String number, String total){
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
@@ -347,7 +353,7 @@ public class FoodDetailFragment extends Fragment {
         requestQueue.add(jsonArrayRequest);
     }
 
-    public void GetOrderData(String url){
+    public void GetOrderData(String url, ArrayList<Order> arrayOrder){
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {

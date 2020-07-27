@@ -39,14 +39,23 @@ public class TrackOrderRecyclerViewAdapter extends RecyclerView.Adapter<TrackOrd
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                holder.textViewNameTitle.setText(ourData.orderArrayList.get(position).getID());
+                int sizepositon = ourData.arrayListOrderOfCustomer.size() - position - 1;
+                holder.textViewNameTitle.setText("ID Order: " + ourData.arrayListOrderOfCustomer.get(sizepositon).getID());
+                holder.textViewName.setText("Total Price: " + ourData.arrayListOrderOfCustomer.get(sizepositon).getTotal_price());
+                holder.textViewDateTrack.setText(ourData.arrayListOrderOfCustomer.get(sizepositon).getDate() + "");
+                if (ourData.arrayListOrderOfCustomer.get(sizepositon).getStatus().equals("0")){
+                    holder.textViewStatusOrderTrack.setText("Status: Proccessing");
+                }
+                else {
+                    holder.textViewStatusOrderTrack.setText("Status: Done");
+                }
             }
         }, 1000);
     }
 
     @Override
     public int getItemCount() {
-        return 9;
+        return ourData.arrayListOrderOfCustomer.size();
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -56,6 +65,13 @@ public class TrackOrderRecyclerViewAdapter extends RecyclerView.Adapter<TrackOrd
 
         @BindView(R.id.textViewName)
         TextView textViewName;
+
+        @BindView(R.id.textViewStatusTrack)
+        TextView textViewStatusOrderTrack;
+
+        @BindView(R.id.textViewDateTrack)
+                TextView textViewDateTrack;
+
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,4 +92,6 @@ public class TrackOrderRecyclerViewAdapter extends RecyclerView.Adapter<TrackOrd
     public interface ClickListener {
         void onClick(View view, int position);
     }
+
+
 }

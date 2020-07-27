@@ -28,4 +28,7 @@ public class ourData {
 
     public static ArrayList<Order> orderArrayList= new ArrayList<>();
 
+    public static String[] id = new String[2];
+
+    public static ArrayList<Order> arrayListOrderOfCustomer = new ArrayList<>();
 }
