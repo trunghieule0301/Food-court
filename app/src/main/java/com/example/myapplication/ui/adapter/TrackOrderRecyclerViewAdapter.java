@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.adapter;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,18 @@ public class TrackOrderRecyclerViewAdapter extends RecyclerView.Adapter<TrackOrd
     @Override
     public void onBindViewHolder(@NonNull TrackOrderRecyclerViewAdapter.MyViewHolder holder, int position) {
         // view item on screen
-        holder.textViewNameTitle.setText(ourData.price[position]);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                holder.textViewNameTitle.setText(ourData.orderArrayList.get(position).getID());
+            }
+        }, 1000);
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 9;
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

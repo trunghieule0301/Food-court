@@ -18,6 +18,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.myapplication.Order;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Meals;
 import com.example.myapplication.ourData;
@@ -27,7 +34,13 @@ import com.example.myapplication.ui.adapter.TrackOrderRecyclerViewAdapter;
 import com.example.myapplication.ui.foodstall.FoodDetailFragment;
 import com.example.myapplication.ui.foodstall.FoodPresenter;
 import com.example.myapplication.ui.foodstall.FoodView;
+import com.example.myapplication.ourData;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -50,12 +63,54 @@ public class TrackOrderFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String urlGetOrderData = "http://foodcourt2020.medianewsonline.com/getOrderData.php";
+
+        GetOrderData(urlGetOrderData, ourData.orderArrayList);
+
         TrackOrderRecyclerViewAdapter adapter =
                 new TrackOrderRecyclerViewAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setClipToPadding(false);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        adapter.setOnItemClickListener((v, position) -> {
+
+        });
+    }
+
+    public void GetOrderData(String url, ArrayList<Order> arrayOrder){
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Toast.makeText(getActivity(), "Get Order data success", Toast.LENGTH_SHORT).show();
+                        for (int i = 0; i < response.length(); i++){
+                            try {
+                                JSONObject object = response.getJSONObject(i);
+                                arrayOrder.add(new Order(
+                                        object.getString("ID"),
+                                        object.getString("IDstall"),
+                                        object.getInt("IDcustomer"),
+                                        (float) object.getDouble("TotalPrice"),
+                                        object.getInt("Total"),
+                                        object.getString("Status"),
+                                        object.getString("Date")
+                                ));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        requestQueue.add(jsonArrayRequest);
     }
 
 }
