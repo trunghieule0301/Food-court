@@ -70,18 +70,27 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Please fill all information", Toast.LENGTH_SHORT).show();
                 }
                 else{
-//                    Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_SHORT).show();
-                    boolean check = false;
-                    for (int i = 0; i < arrayListCus.size(); i++){
-                        if (editTextAccountRegister.getText().toString().equals(arrayListCus.get(i).getAccount())){
-                            check = true;
-                        }
-                    }
-                    if (check){
-                        Toast.makeText(RegisterActivity.this, "This account has already exist", Toast.LENGTH_SHORT).show();
+                    if (editTextAccountRegister.getText().toString().length() < 10){
+                        Toast.makeText(RegisterActivity.this, "Account must be over 9 characters", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        AddCustomer(urlInsertCustomer);
+                        if (editTextPasswordRegister.getText().toString().length() < 9){
+                            Toast.makeText(RegisterActivity.this, "Password must be over 9 character", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            boolean check = false;
+                            for (int i = 0; i < arrayListCus.size(); i++){
+                                if (editTextAccountRegister.getText().toString().equals(arrayListCus.get(i).getAccount())){
+                                    check = true;
+                                }
+                            }
+                            if (check){
+                                Toast.makeText(RegisterActivity.this, "This account has already exist", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                AddCustomer(urlInsertCustomer);
+                            }
+                        }
                     }
                 }
             }
