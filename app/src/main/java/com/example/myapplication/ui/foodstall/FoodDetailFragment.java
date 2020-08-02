@@ -106,7 +106,7 @@ public class FoodDetailFragment extends Fragment {
                 if (ourData.ammount[position] > 0){
                     ourData.ammount[position]--;
                 }
-                Toast.makeText(getActivity(), SUM +"", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), SUM +"", Toast.LENGTH_SHORT).show();
                 if (SUM >= 0) {
                     sum = sum - price;
                 }
@@ -147,8 +147,8 @@ public class FoodDetailFragment extends Fragment {
                 // update total money of customer
                 int cai_nay_la_chuyen_tu_string_sang_int = Integer.parseInt(totalPrice.getText().toString());
                 String nay_la_tong_so_tien_moi_ma_khach_da_mua = (totalmoneyofcus + (float) cai_nay_la_chuyen_tu_string_sang_int) + "";
-                Toast.makeText(getActivity(), nay_la_tong_so_tien_moi_ma_khach_da_mua, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), idcustomeerorder, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), nay_la_tong_so_tien_moi_ma_khach_da_mua, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), idcustomeerorder, Toast.LENGTH_SHORT).show();
                 UpdateLastPay(urlUpdateMoney, idcustomeerorder, nay_la_tong_so_tien_moi_ma_khach_da_mua);
 
                 //
@@ -193,7 +193,7 @@ public class FoodDetailFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")){
-                            Toast.makeText(getActivity(), "Update money success", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), "Update money success", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             Toast.makeText(getActivity(), "Update money fail", Toast.LENGTH_SHORT).show();
@@ -224,7 +224,7 @@ public class FoodDetailFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")){
-                            Toast.makeText(getActivity(), "Pay successful", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), "Pay successful", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Toast.makeText(getActivity(), "Pay fail", Toast.LENGTH_SHORT).show();
@@ -259,7 +259,7 @@ public class FoodDetailFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")){
-                            Toast.makeText(getActivity(), "Add detail success", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), "Add detail success", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             Toast.makeText(getActivity(), "Add detail fail", Toast.LENGTH_SHORT).show();
@@ -291,7 +291,7 @@ public class FoodDetailFragment extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getActivity(), "Load Customer Data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Load Customer Data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0;i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -326,7 +326,7 @@ public class FoodDetailFragment extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getActivity(), "Get food data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Get food data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -359,7 +359,7 @@ public class FoodDetailFragment extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getActivity(), "Get Order data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Get Order data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);

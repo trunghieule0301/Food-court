@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
                             finish();
                         }
                         else{
-                            Toast.makeText(RegisterActivity.this, "Register Fail", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Register fail due to  connection", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -146,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(RegisterActivity.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(RegisterActivity.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0;i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);

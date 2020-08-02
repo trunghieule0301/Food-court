@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(MainActivity.this, "Get stall data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Get stall data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Load data fail due to:" + error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Load data fail due to:" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         requestQueue.add(jsonArrayRequest);
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(MainActivity.this, "Get food data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Get food data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         requestQueue.add(jsonArrayRequest);
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(MainActivity.this, "Get Order data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Get Order data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         requestQueue.add(jsonArrayRequest);
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(MainActivity.this, "Get detail order success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Get detail order success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Load data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         requestQueue.add(jsonArrayRequest);
@@ -283,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(MainActivity.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0;i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -305,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         requestQueue.add(jsonArrayRequest);

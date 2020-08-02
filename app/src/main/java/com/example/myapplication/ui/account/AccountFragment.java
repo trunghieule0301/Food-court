@@ -64,7 +64,7 @@ public class AccountFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_account, container, false);
         args = ourData.account[0];
-        Toast.makeText(getActivity(), "test click: " + args, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "test click: " + args, Toast.LENGTH_SHORT).show();
         return root;
     }
 
@@ -96,7 +96,7 @@ public class AccountFragment extends Fragment {
                     IDcustomerne = arrayListCustomer.get(index).getID() + "";
                 }
             }
-        }, 1000);
+        }, 2000);
 
         Handler handler1 = new Handler();
         handler.postDelayed(new Runnable() {
@@ -145,7 +145,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Track Order
-                Toast.makeText(getActivity(), "Feature is in progress", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Feature is in progress", Toast.LENGTH_SHORT).show();
                 FragmentActivity activity = (FragmentActivity) view.getContext();
                 Fragment fragment = new TrackOrderFragment();
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
@@ -181,7 +181,7 @@ public class AccountFragment extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getActivity(), "Load Customer Data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Load Customer Data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0;i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -214,7 +214,7 @@ public class AccountFragment extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getActivity(), "Get Order data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Get Order data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0; i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);

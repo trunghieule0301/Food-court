@@ -42,7 +42,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         AnhXa();
 
         index_cus = getIntent().getIntExtra("index_cus",0);
-        Toast.makeText(this, index_cus + "", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, index_cus + "", Toast.LENGTH_SHORT).show();
         
         buttonConfirmChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +91,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(ChangePasswordActivity.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(ChangePasswordActivity.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0;i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -113,7 +113,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ChangePasswordActivity.this, "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(ChangePasswordActivity.this, "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
         requestQueue.add(jsonArrayRequest);
@@ -126,17 +126,17 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("Success")){
-                            Toast.makeText(ChangePasswordActivity.this, "Update successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ChangePasswordActivity.this, "Change password successful", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Toast.makeText(ChangePasswordActivity.this, "Update pass fail", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(ChangePasswordActivity.this, "Update pass fail", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ChangePasswordActivity.this, "Connect data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(ChangePasswordActivity.this, "Connect data fail due to" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override

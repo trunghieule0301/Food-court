@@ -111,7 +111,7 @@ public class Login extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(Login.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Login.this, "Load Customer Data success", Toast.LENGTH_SHORT).show();
                         for (int i = 0;i < response.length(); i++){
                             try {
                                 JSONObject object = response.getJSONObject(i);
@@ -133,7 +133,7 @@ public class Login extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Login.this, "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Login.this, "Load data fail due to " + error.toString(), Toast.LENGTH_SHORT).show();
 
                     }
                 });

@@ -48,7 +48,7 @@ public class PaySuccessFragment extends Fragment {
             @Override
             public void run() {
                 if (ourData.orderArrayList.isEmpty()) {
-                    Toast.makeText(getContext(), "empty", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "empty", Toast.LENGTH_SHORT).show();
                 }
                 else{
 //                    Toast.makeText(getActivity(), ourData.orderArrayList.size() + "", Toast.LENGTH_SHORT).show();
